@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using React5.Models;
-using React5.Services;
-
 namespace React5.Controllers
 {
     [ApiController]
@@ -18,8 +16,8 @@ namespace React5.Controllers
         {
             return Enumerable.Range(1, 5).Select(index => new User
             {
-                name = "Ezio",
-                email = "maazbinasad29@gmail.com"
+                UserName = "Ezio",
+                Mail = "maazbinasad29@gmail.com"
             })
             .ToArray();
         }
@@ -28,7 +26,7 @@ namespace React5.Controllers
         public IActionResult Insert([FromBody] User user)
 
         {
-            return CreatedAtAction(nameof(Insert), user.name);
+            return CreatedAtAction(nameof(Insert), user.Mail);
             
         }
 
