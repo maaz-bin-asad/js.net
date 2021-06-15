@@ -9,7 +9,7 @@ namespace React5.Models
     {
 
 
-        public string UserName { get; set; }
+        public string userName { get; set; }
         public string HashPassword { get; set; }
         public string Mail { get; set; }
 
