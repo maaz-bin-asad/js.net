@@ -7,10 +7,10 @@ namespace React5.Models
 {
     public class Test
     {
-        public int TestId { get; set; }
-        public string TestName { get; set; }
-        public string TestDomain { get; set; }
-        public Double Score { get; set; }
-        public string TestURL { get; set; }
+        public string testid { get; set; }
+        public string testname { get; set; }
+        public string testdomain { get; set; }
+        public Double score { get; set; }
+        public string testurl { get; set; }
     }
 }

@@ -7,12 +7,12 @@ namespace React5.Models
 {
     public class Event
     {
-        public string EventId { get; set; }
-        public string EventName { get; set; }
-        public string EventType { get; set; }
-        public string EventURL { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public string eventid { get; set; }
+        public string eventname { get; set; }
+        public string eventType { get; set; }
+        public string eventurl { get; set; }
+        public DateTime starttime { get; set; }
+        public DateTime endtime { get; set; }
 
     }
 }
