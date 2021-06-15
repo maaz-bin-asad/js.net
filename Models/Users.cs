@@ -13,7 +13,5 @@ namespace React5.Models
         public string hashpassword { get; set; }
         public string mail { get; set; }
 
-        public long phoneno { get; set; }
-
     }
 }
