@@ -18,14 +18,12 @@ export class FetchData extends Component {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Email</th>
           </tr>
         </thead>
         <tbody>
           {forecasts.map(forecast =>
-              <tr key={forecast.userName}>
-              <td>{forecast.userName}</td>
-              <td>{forecast.mail}</td>
+              <tr key={forecast}>
+              <td>{forecast}</td>
             </tr>
           )}
         </tbody>

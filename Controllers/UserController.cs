@@ -2,32 +2,32 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using React5.Models;
+using System;
 namespace React5.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
+
     public class UserController : ControllerBase
     {
+        List<string> courses = new List<string>();
         public UserController()
         {
         }
         [HttpGet]
-        public IEnumerable<User> Get()
+        public List<string> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new User
-            {
-                UserName = "Ezio",
-                Mail = "maazbinasad29@gmail.com"
-            })
-            .ToArray();
+            courses.Add("C++");
+            return courses;
         }
 
         [HttpPost]
-        public IActionResult Insert([FromBody] User user)
+        public RedirectResult Insert([FromForm] User user)
 
         {
-            return CreatedAtAction(nameof(Insert), user.Mail);
-            
+            string name=Convert.ToString(user.userName);
+            return Redirect("/"+name);      
         }
 
 
