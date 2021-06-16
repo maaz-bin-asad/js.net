@@ -7,10 +7,10 @@ namespace React5.Models
 {
     public class UserProgress
     {
-        public string TestID { get; set; }
-        public string UserName { get; set; }
-        public Double ObtainedScore { get; set; }
-        public string TestDomain { get; set; }
+        public string testid { get; set; }
+        public string username { get; set; }
+        public Double obtainedscore { get; set; }
+        public string testdomain { get; set; }
 
     }
 }

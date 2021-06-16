@@ -9,11 +9,9 @@ namespace React5.Models
     {
 
 
-        public string userName { get; set; }
-        public string HashPassword { get; set; }
-        public string Mail { get; set; }
-
-        public long PhoneNo { get; set; }
+        public string username { get; set; }
+        public string hashpassword { get; set; }
+        public string mail { get; set; }
 
     }
 }
