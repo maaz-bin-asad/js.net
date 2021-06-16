@@ -39,7 +39,7 @@ export class FetchData extends Component {
 
     return (
       <div>
-        <h1 id="tabelLabel" >List of users</h1>
+        <h1 id="tabelLabel" >List of courses</h1>
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>

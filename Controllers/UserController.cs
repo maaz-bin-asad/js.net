@@ -42,7 +42,7 @@ namespace React5.Controllers
         }
 
         [HttpPost]
-        public RedirectResult Insert([FromForm] User user)
+        public RedirectResult Login([FromForm] User user)
 
         {
             string mail = Convert.ToString(user.mail);
@@ -85,6 +85,27 @@ namespace React5.Controllers
             }
 
         }
+        [HttpPost("{signup}")]
+        public RedirectResult Signup([FromForm] User user)
+        {
+            string name = Convert.ToString(user.username);
+            string mail = Convert.ToString(user.mail);
+            string pass = Convert.ToString(user.hashpassword);
+            Console.WriteLine(name);  //debugging
+            Console.WriteLine(mail);  //debugging
+            Console.WriteLine(pass);  //debugging
+            con.OpenConnection();
+            string query = "insert into user ('username', 'mail', 'hashpassword') values(@name, @mail, @password)";
+            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+            myCommand.Parameters.AddWithValue("@name", name);
+            myCommand.Parameters.AddWithValue("@mail", mail);
+            myCommand.Parameters.AddWithValue("@password", pass);
+            SQLiteDataReader result = myCommand.ExecuteReader();
+            con.CloseConnetion();
+            return Redirect("/");
+
+        }
+
 
 
     }
