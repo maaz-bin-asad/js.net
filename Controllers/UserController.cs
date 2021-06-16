@@ -15,7 +15,6 @@ namespace React5.Controllers
 
     public class UserController : ControllerBase
     {
-/*        List<string> courses = new List<string>();*/
         DatabaseCon con = new DatabaseCon();
         public UserController()
         {
@@ -24,8 +23,6 @@ namespace React5.Controllers
         public IEnumerable<User> Get()
         {
             con.OpenConnection();
-            /* courses.Add("C++");
-             return courses;*/
             List<User> users = new List<User>();
             string query = "SELECT * FROM user";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
@@ -48,10 +45,53 @@ namespace React5.Controllers
         public RedirectResult Insert([FromForm] User user)
 
         {
-            string name=Convert.ToString(user.username);
-            return Redirect("/"+name);      
+            string mail = Convert.ToString(user.mail);
+            string pass = Convert.ToString(user.hashpassword);
+            Console.WriteLine(mail);  //debugging
+            Console.WriteLine(pass);  //debugging
+            con.OpenConnection();
+            string query = "SELECT * FROM user where hashpassword=@pass";
+            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+            myCommand.Parameters.AddWithValue("@pass", pass);
+            SQLiteDataReader result = myCommand.ExecuteReader();
+            if (result.HasRows)
+            {
+                bool valid = false;
+                while (result.Read())
+                {
+                    string email = Convert.ToString(result["mail"]);
+                    if (email == mail)
+                    {
+                        valid = true;
+                    }
+                }
+                con.CloseConnetion();
+                if (valid)
+                {
+                    return Redirect("/fetch-data");
+
+                }
+                else
+                {
+                    return Redirect("/");
+
+                }
+
+            }
+            else
+            {
+                con.CloseConnetion();
+                return Redirect("/");
+            }
+
         }
 
 
     }
 }
+
+/*
+ Test credentials
+ ezio@assasinscreeed.com
+jhewe
+*/
