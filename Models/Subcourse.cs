@@ -7,8 +7,8 @@ namespace React5.Models
 {
     public class Subcourse
     {
+        public string subcourseid { get; set; }
         public string subcoursename { get; set; }
-        public string subcourseurl { get; set; }
-        public string coursename { get; set; }
+        public string courseid { get; set; }
     }
 }

@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using React5.Models;
 using System;
 using React5.Database;
-using System.Data.SQLite;
-
+using React5.Services;
 
 namespace React5.Controllers
 {
@@ -15,31 +13,31 @@ namespace React5.Controllers
 
     public class CourseController : ControllerBase
     {
-        DatabaseCon con = new DatabaseCon();
         public CourseController()
         {
         }
         [HttpGet]
         public IEnumerable<Course> Get()
         {
-            con.OpenConnection();
-            List<Course> courses = new List<Course>();
-            string query = "SELECT * FROM courses";
-            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            SQLiteDataReader result = myCommand.ExecuteReader();
-            if (result.HasRows)
-            {
-                while (result.Read())
-                {
-                    Course obj = new Course();
-                    obj.coursename = result["coursename"].ToString();
-                    obj.coursedomain = result["coursedomain"].ToString();
-                    courses.Add(obj);
-                }
-            }
-            con.CloseConnetion();
-            return courses;
+            return CourseServices.GetAll();
         }
+
+        [HttpGet]
+        [Route("getbydomain/{Domain}")]
+        public IEnumerable<Course> GetByDomain(string Domain)
+        {
+            return CourseServices.GetByDoamin(Domain);
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] Course newCourse)
+        {
+            CourseServices.Add(newCourse);
+            return CreatedAtAction(nameof(Create), newCourse);
+
+        }
+
+      
 
 
     }
