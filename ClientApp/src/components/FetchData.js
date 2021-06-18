@@ -25,6 +25,8 @@ export class FetchData extends Component {
               <tr key={forecast}>
                   <td>{forecast.coursename}</td>
                   <td>{forecast.coursedomain}</td>
+                  <td>{forecast.courserating}</td>
+                  <td>{forecast.courseurl}</td>
             </tr>
           )}
         </tbody>
@@ -47,7 +49,10 @@ export class FetchData extends Component {
   }
 
   async populateWeatherData() {
-      const response = await fetch('Course');
+       /*const response = await fetch('Course');*/
+      const response = await fetch('Course/getbydomain/Backend');
+      /*const response = await fetch('Course/getbydomain/Frontend');*/
+
       const data = await response.json();
       console.log(data)
     this.setState({ forecasts: data, loading: false });
