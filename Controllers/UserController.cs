@@ -19,28 +19,6 @@ namespace React5.Controllers
         public UserController()
         {
         }
-        [HttpGet]
-        public IEnumerable<User> Get()
-        {
-            con.OpenConnection();
-            List<User> users = new List<User>();
-            string query = "SELECT * FROM user";
-            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            SQLiteDataReader result = myCommand.ExecuteReader();
-            if (result.HasRows)
-            {
-                while (result.Read()) {
-                    User obj = new User();
-                    obj.username = result["username"].ToString();
-                    obj.mail = result["mail"].ToString();
-                    obj.hashpassword = result["hashpassword"].ToString();
-                    users.Add(obj);
-             }
-            }
-            con.CloseConnetion();
-            return users;
-        }
-
         [HttpPost]
         public RedirectResult Insert([FromForm] User user)
 
