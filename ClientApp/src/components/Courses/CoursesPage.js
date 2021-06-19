@@ -5,28 +5,31 @@ export class CoursesPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true };
+        this.state = { courses: [], loading: true };
     }
 
     componentDidMount() {
-        this.populateWeatherData();
+        this.populateData();
     }
 
-    static renderForecastsTable(forecasts) {
+    static renderTable(courses) {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Domain</th>
+                        <th>Rating</th>
+                        <th>Course Link</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {forecasts.map(forecast =>
-                        <tr key={forecast}>
-                            <td>{forecast.coursename}</td>
-                            <td>{forecast.coursedomain}</td>
-                            <td>{forecast.courserating}</td>
-                            <td>{forecast.courseurl}</td>
+                    {courses.map(course =>
+                        <tr key={course}>
+                            <td>{course.coursename}</td>
+                            <td>{course.coursedomain}</td>
+                            <td>{course.courserating}</td>
+                            <td>{course.courseurl}</td>
                         </tr>
                     )}
                 </tbody>
@@ -37,24 +40,23 @@ export class CoursesPage extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading..</em></p>
-            : CoursesPage.renderForecastsTable(this.state.forecasts);
+            : CoursesPage.renderTable(this.state.courses);
 
         return (
             <div>
-                <h1 id="tabelLabel" >List of users</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <h1 id="tabelLabel" >List of courses</h1>
                 {contents}
             </div>
         );
     }
 
-    async populateWeatherData() {
+    async populateData() {
         /*const response = await fetch('Course');*/
         const response = await fetch('Course/getbydomain/Backend');
         /*const response = await fetch('Course/getbydomain/Frontend');*/
 
         const data = await response.json();
         console.log(data)
-        this.setState({ forecasts: data, loading: false });
+        this.setState({ courses: data, loading: false });
     }
 }
