@@ -68,7 +68,7 @@ namespace React5.Controllers
                 con.CloseConnetion();
                 if (valid)
                 {
-                    return Redirect("/fetch-data");
+                    return Redirect("userpage");
 
                 }
                 else
