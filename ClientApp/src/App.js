@@ -4,12 +4,10 @@ import { Layout } from './components/Layout';
 import { HeadLayout } from './components/HeadLayout';
 import Home  from './components/HomePage/Home';
 import { NavMenu } from './components/HomePage/NavMenu';
-/*import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';*/
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './custom.css'
 import { UserPage } from './components/UserPage/UserPage';
-import CoursesPage from './components/Courses/CoursesPage';
+import { CoursesPage } from './components/Courses/CoursesPage';
 import EventPage from './components/Event/EventPage';
 import QuizPage from './components/Quiz/QuizPage';
 import Signup from './components/AuthPage/Signup';

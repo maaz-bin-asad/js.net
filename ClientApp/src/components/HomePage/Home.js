@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 
@@ -26,7 +27,7 @@ const Home = () => {
             <div className="text-box" >
                 <h1>Start Your Journey</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                <a href="/auth/signup" className="btn1">GET Started</a>
+                <Link tag={Link} className="btn1" to="/auth/signup">Get started</Link>
             </div>
             {/*<div>
                 <h1>Hello, Learner!</h1>
