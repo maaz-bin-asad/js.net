@@ -46,7 +46,7 @@ namespace React5.Controllers
                 con.CloseConnetion();
                 if (valid)
                 {
-                    return Redirect("userpage");
+                    return Redirect("/userpage");
 
                 }
                 else

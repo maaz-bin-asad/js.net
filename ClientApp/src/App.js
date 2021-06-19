@@ -6,7 +6,7 @@ import Home  from './components/HomePage/Home';
 import { NavMenu } from './components/HomePage/NavMenu';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './custom.css'
-import { UserPage } from './components/UserPage/UserPage';
+import UserPage from './components/UserPage/UserPage';
 import { CoursesPage } from './components/Courses/CoursesPage';
 import EventPage from './components/Event/EventPage';
 import QuizPage from './components/Quiz/QuizPage';
