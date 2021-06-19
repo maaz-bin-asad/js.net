@@ -12,7 +12,7 @@ namespace React5.Database
 
         public DatabaseCon()
         {
-            myConnection = new SQLiteConnection("Data Source = C:\\Users\\abc\\source\\repos\\js.net\\Database\\DataBase.sqlite3");
+            myConnection = new SQLiteConnection("Data Source = C:\\Users\\dell\\Documents\\GitHub\\js.net\\Database\\DataBase.sqlite3");
             if (!File.Exists("./Database/DataBase.sqlite3"))
             {
                 SQLiteConnection.CreateFile("DataBase.sqlite3");
