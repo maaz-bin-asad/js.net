@@ -14,7 +14,7 @@ namespace React5.Services
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
             List<Course> courses = new List<Course>();
-            string query = "SELECT * FROM courses";
+            string query = "SELECT * FROM courses order by courserating desc limit 10";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             SQLiteDataReader result = myCommand.ExecuteReader();
             if (result.HasRows)

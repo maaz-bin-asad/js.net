@@ -5,6 +5,9 @@ using React5.Models;
 using System;
 using React5.Database;
 using System.Data.SQLite;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Text;
 
 
 namespace React5.Controllers
@@ -19,40 +22,36 @@ namespace React5.Controllers
         public UserController()
         {
         }
-        [HttpGet]
-        public IEnumerable<User> Get()
+        static string ComputeSha256Hash(string rawData)
         {
-            con.OpenConnection();
-            List<User> users = new List<User>();
-            string query = "SELECT * FROM user";
-            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            SQLiteDataReader result = myCommand.ExecuteReader();
-            if (result.HasRows)
+            // Create a SHA256   
+            using (SHA256 sha256Hash = SHA256.Create())
             {
-                while (result.Read()) {
-                    User obj = new User();
-                    obj.username = result["username"].ToString();
-                    obj.mail = result["mail"].ToString();
-                    obj.hashpassword = result["hashpassword"].ToString();
-                    users.Add(obj);
-             }
+                // ComputeHash - returns byte array  
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                // Convert byte array to a string   
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
-            con.CloseConnetion();
-            return users;
         }
 
-        [HttpPost]
+            [HttpPost]
         public RedirectResult Insert([FromForm] User user)
 
         {
             string mail = Convert.ToString(user.mail);
             string pass = Convert.ToString(user.hashpassword);
-            Console.WriteLine(mail);  //debugging
-            Console.WriteLine(pass);  //debugging
+            string hashed = ComputeSha256Hash(pass);
+            Console.WriteLine(hashed);
             con.OpenConnection();
             string query = "SELECT * FROM user where hashpassword=@pass";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            myCommand.Parameters.AddWithValue("@pass", pass);
+            myCommand.Parameters.AddWithValue("@pass", hashed);
             SQLiteDataReader result = myCommand.ExecuteReader();
             if (result.HasRows)
             {
@@ -68,7 +67,7 @@ namespace React5.Controllers
                 con.CloseConnetion();
                 if (valid)
                 {
-                    return Redirect("userpage");
+                    return Redirect("/userpage");
 
                 }
                 else
@@ -83,6 +82,42 @@ namespace React5.Controllers
                 con.CloseConnetion();
                 return Redirect("/");
             }
+
+        }
+        [HttpPost("{signup}")]
+
+        public RedirectResult Register([FromForm] User user)
+        {
+            string mail = Convert.ToString(user.mail);
+            string pass = Convert.ToString(user.hashpassword);
+            string hashed = ComputeSha256Hash(pass);
+            string username = Convert.ToString(user.username);
+            con.OpenConnection();
+            string query = "SELECT * FROM user where mail=@email";
+            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+            myCommand.Parameters.AddWithValue("@email", mail);
+            SQLiteDataReader result = myCommand.ExecuteReader();
+            if (result.HasRows)
+            {
+                con.CloseConnetion();
+                return Redirect("/auth/signup");
+
+            }
+            else
+            {
+                con.CloseConnetion();
+                con.OpenConnection();
+                query = "insert into user ('username', 'hashpassword', 'mail') values(@username, @hashpassword, @mail)";
+                SQLiteCommand comm = new SQLiteCommand(query, con.myConnection);
+                comm.Parameters.AddWithValue("@username", username);
+                comm.Parameters.AddWithValue("@hashpassword", hashed);
+                comm.Parameters.AddWithValue("@mail", mail);
+                var res = comm.ExecuteNonQuery();
+                con.CloseConnetion();
+                return Redirect("/auth/login");
+            }
+
+
 
         }
 

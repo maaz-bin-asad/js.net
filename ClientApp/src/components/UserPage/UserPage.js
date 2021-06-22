@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+
 import Card from './Card'
 import "./Card.css";
 const UserPage = () => {
@@ -18,3 +19,4 @@ const UserPage = () => {
     }
 }
 export default UserPage;
+
