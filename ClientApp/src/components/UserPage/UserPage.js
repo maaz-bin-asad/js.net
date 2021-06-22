@@ -1,60 +1,20 @@
-﻿import React, { Component } from 'react';
-
-export class UserPage extends Component {
-    static displayName = UserPage.name;
-
-    constructor(props) {
-        super(props);
-        this.state = { forecasts: [], loading: true };
-    }
-
-    componentDidMount() {
-        this.populateWeatherData();
-    }
-
-    static renderForecastsTable(forecasts) {
+﻿import React from 'react';
+import Card from './Card'
+import "./Card.css";
+const UserPage = () => {
+    var name = localStorage.getItem("Name");
+    if (name == "") {
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {forecasts.map(forecast =>
-                        <tr key={forecast}>
-                            <td>{forecast.coursename}</td>
-                            <td>{forecast.coursedomain}</td>
-                            <td>{forecast.courserating}</td>
-                            <td>{forecast.courseurl}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        );
+            <>{window.location.href = "/"}</>
+        )
     }
-
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading..</em></p>
-            : UserPage.renderForecastsTable(this.state.forecasts);
-
+    else {
         return (
-            <div>
-                <h1 id="tabelLabel" >List of users</h1>
-                <p>This component demonstrates fetching data from the server.</p>
-                {contents}
+            <><div className="User_heading">
+                <h2>Hello {name}, Welcome</h2>
             </div>
-        );
-    }
-
-    async populateWeatherData() {
-        /*const response = await fetch('Course');*/
-        const response = await fetch('Course/getbydomain/Backend');
-        /*const response = await fetch('Course/getbydomain/Frontend');*/
-
-        const data = await response.json();
-        console.log(data)
-        this.setState({ forecasts: data, loading: false });
+               <Card/>
+            </>)
     }
 }
+export default UserPage;

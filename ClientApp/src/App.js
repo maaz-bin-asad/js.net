@@ -8,7 +8,7 @@ import { NavMenu } from './components/HomePage/NavMenu';
 import { Counter } from './components/Counter';*/
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './custom.css'
-import { UserPage } from './components/UserPage/UserPage';
+import UserPage  from './components/UserPage/UserPage';
 import CoursesPage from './components/Courses/CoursesPage';
 import EventPage from './components/Event/EventPage';
 import QuizPage from './components/Quiz/QuizPage';
@@ -30,15 +30,18 @@ function App() {
                     <Router path="/auth">
                       
                     </Router>
-                <Router path="/userpage">
-                        <HeadLayout>
-                            <Route exact path='/userpage' component={UserPage} />
-                            <Route path='/userpage/course' component={CoursesPage} />
-                            <Route path='/userpage/event' component={EventPage} />
-                            <Route path='/userpage/quiz' component={ QuizPage} />
-                        </HeadLayout>
-                  
-                    </Router>
+
+                      if (localStorage.getItem("Name") != ""){
+                        <Router path="/userpage">
+                            <HeadLayout>
+                                <Route exact path='/userpage' component={UserPage} />
+                                <Route path='/userpage/course' component={CoursesPage} />
+                                <Route path='/userpage/event' component={EventPage} />
+                                <Route path='/userpage/quiz' component={QuizPage} />
+                            </HeadLayout>
+
+                        </Router>}
+
                     {/* <Router path="/courses">
                         <HeadLayout>
                             <Route path='/course' component={CoursesPage} />
