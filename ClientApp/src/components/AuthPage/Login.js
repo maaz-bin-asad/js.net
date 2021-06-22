@@ -1,4 +1,5 @@
-﻿import React from 'react';
+
+import React from 'react';
 import './Auth.css'
 
 const Login = () => {
@@ -53,5 +54,6 @@ const Login = () => {
           
 		  </>
     )
+
 }
 export default Login;
