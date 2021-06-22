@@ -27,14 +27,14 @@ const Signup = () => {
 								<div className="input-group-prepend">
 									<span className="input-group-text"><i class="fas fa-envelope"></i></span>
 								</div>
-								<input type="text" name="mail" className="form-control" placeholder="Email id"/>
+								<input type="text" name="mail" className="form-control" placeholder="Email"/>
 
 							</div>
 							<div className="input-group form-group">
 								<div className="input-group-prepend">
 									<span className="input-group-text"><i class="fas fa-key"></i></span>
 								</div>
-								<input type="password" name="hashpassword" className="form-control" placeholder="password"  />
+								<input type="password" name="hashpassword" className="form-control" placeholder="Password"  />
 							</div>
 							<div className="row align-items-center remember" />
 
