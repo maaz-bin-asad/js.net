@@ -27,12 +27,12 @@
         margin-bottom: 30px;
     }
 
-.cards {
+.datacards {
     width: 100%;
     height: auto;
 }
 
-.card {
+.datacard {
     margin: 3%;
     transition: all 0.4s cubic-bezier(0.075, 0.885, 0, 1);
     background-color: #fff;
@@ -42,7 +42,7 @@
     float: left;
 }
 
-    .card:hover {
+    .datacard:hover {
         box-shadow: 0px 30px 18px -8px rgba(0,0,0,0.1);
         transform: scale(1.02,1.02);
     }
@@ -99,7 +99,7 @@ card_description {
     }
 
 @media (max-width:768px) {
-    .card {
+    .datacard {
         float: none;
         margin: 5%;
         width: 90%;

@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const Card = () => {
     const cardMain = Carddata.map((val) => (
-        <div className='cards'>
-            <div className='card'>
+        <div className='datacards'>
+            <div className='datacard'>
                 <img src={val.imgsrc} alt='mypic' className='card_img'></img>
                 <div className='card_info'>
                     <h3 className='card_title'>{val.title}</h3>
