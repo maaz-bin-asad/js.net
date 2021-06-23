@@ -6,7 +6,7 @@ const BackEndCourse = () => {
     return (
         <>
             
-            <h1>Back end</h1>
+            <h1 className="heading_label">Back end</h1>
         </>)
 }
 export default BackEndCourse;

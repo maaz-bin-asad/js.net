@@ -6,7 +6,7 @@ const FrontEndCourse = () => {
     return (
         <>
            
-            <h1>Front end</h1>
+            <h1 className="heading_label">Front end</h1>
         </>)
 }
 export default FrontEndCourse;
