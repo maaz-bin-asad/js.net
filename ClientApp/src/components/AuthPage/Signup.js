@@ -39,9 +39,8 @@ const Signup = () => {
 							<div className="row align-items-center remember" />
 
 							<div className="form-group">
-								<Link tag={Link} to="/auth/login">
 									<input type="submit" value="Register" className="btn float-right login_btn" />
-								</Link>
+
 						  </div>
 						</form>
 					</div>
