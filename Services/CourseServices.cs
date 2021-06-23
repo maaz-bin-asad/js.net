@@ -14,7 +14,7 @@ namespace React5.Services
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
             List<Course> courses = new List<Course>();
-            string query = "SELECT * FROM courses order by courserating desc limit 10";
+            string query = "SELECT * FROM courses";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             SQLiteDataReader result = myCommand.ExecuteReader();
             if (result.HasRows)
@@ -24,9 +24,8 @@ namespace React5.Services
                     Course obj = new Course();
                     obj.courseid = result["courseid"].ToString();
                     obj.coursename = result["coursename"].ToString();
-                    obj.courserating = (double)result["courserating"];
                     obj.coursedomain = result["coursedomain"].ToString();
-                    obj.courseurl = result["courseurl"].ToString();
+                    obj.course_difficulty = result["course_difficulty"].ToString();
                     courses.Add(obj);
                 }
             }
@@ -38,13 +37,12 @@ namespace React5.Services
         {
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
-            string Query = "INSERT INTO courses(`courseid`,`coursename`,`courserating`,`coursedomain`,`courseurl`) VALUES(@courseid,@coursename,@courserating,@coursedomain,@courseurl)";
+            string Query = "INSERT INTO courses(`courseid`,`coursename`,`coursedomain`,`course_difficulty`) VALUES(@courseid,@coursename,@coursedomain,@course_difficulty)";
             SQLiteCommand InsertCommand = new SQLiteCommand(Query, con.myConnection);
             InsertCommand.Parameters.AddWithValue("@courseid", newCourse.courseid);
             InsertCommand.Parameters.AddWithValue("@coursename", newCourse.coursename);
-            InsertCommand.Parameters.AddWithValue("@courserating", newCourse.courserating);
             InsertCommand.Parameters.AddWithValue("@coursedomain", newCourse.coursedomain);
-            InsertCommand.Parameters.AddWithValue("@courseurl", newCourse.courseurl);
+            InsertCommand.Parameters.AddWithValue("@course_difficulty", newCourse.course_difficulty);
             int res = InsertCommand.ExecuteNonQuery();
             con.CloseConnetion();
         }
@@ -66,9 +64,8 @@ namespace React5.Services
                     Course obj = new Course();
                     obj.courseid = result["courseid"].ToString();
                     obj.coursename = result["coursename"].ToString();
-                    obj.courserating = (double)result["courserating"];
                     obj.coursedomain = result["coursedomain"].ToString();
-                    obj.courseurl = result["courseurl"].ToString();
+                    obj.course_difficulty = result["course_difficulty"].ToString();
                     courses.Add(obj);
                 }
             }
