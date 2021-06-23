@@ -1,11 +1,12 @@
 ﻿import React, { Component } from 'react';
 import Category from './Category';
 
-const VisualCourse = () => {
+const BackEndCourse = () => {
 
     return (
         <>
-            <h1>Visual</h1>
+            
+            <h1>Back end</h1>
         </>)
 }
-export default VisualCourse;
+export default BackEndCourse;

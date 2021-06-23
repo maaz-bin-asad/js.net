@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import './Auth.css';
-
+import { Link } from 'react-router-dom';
 const Signup = () => {
     return (
 		<><div className="container1">
@@ -39,8 +39,10 @@ const Signup = () => {
 							<div className="row align-items-center remember" />
 
 							<div className="form-group">
-								<input type="submit" value="Register" className="btn float-right login_btn" />
-							</div>
+								<Link tag={Link} to="/auth/login">
+									<input type="submit" value="Register" className="btn float-right login_btn" />
+								</Link>
+						  </div>
 						</form>
 					</div>
 					<div className="card-footer">

@@ -8,12 +8,23 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './custom.css'
 
 import UserPage from './components/UserPage/UserPage';
-import { CoursesPage } from './components/Courses/CoursesPage';
+import { CoursesPage }  from './components/Courses/CoursesPage';
 
 import EventPage from './components/Event/EventPage';
 import QuizPage from './components/Quiz/QuizPage';
 import Signup from './components/AuthPage/Signup';
 import Login from './components/AuthPage/Login';
+
+
+import FrontEndCourse from './components/Courses/FrontEndCourse';
+import BackEndCourse from './components/Courses/BackEndCourse';
+import VisualCourse from './components/Courses/VisualCourse';
+import { SideBarLayout } from './components/SideBarLayout';
+import Courses from './components/Courses/Courses';
+
+
+
+
 function App() {
     return (
         <Router>
@@ -28,7 +39,12 @@ function App() {
                      
                     </Router>
                     <Router path="/auth">
-                      
+                        <Layout>
+                   
+                            <Route path='/auth/signup' component={Signup} />
+                            <Route path='/auth/login' component={Login} />
+                        </Layout>
+
                     </Router>
 
                       if (localStorage.getItem("Name") != ""){
@@ -42,14 +58,16 @@ function App() {
 
                         </Router>}
 
-                    {/* <Router path="/courses">
-                        <HeadLayout>
-                            <Route path='/course' component={CoursesPage} />
-                            <Route path='/event' component={EventPage} />
-                            <Route path='/quiz' component={QuizPage} />
-                        </HeadLayout>
-                        <CoursesPage />
-                    </Router>*/}
+                    
+                    {/*<Router path="/userpage/course">
+                        <SideBarLayout>
+                            <Route exact path='/userpage/course' component={Courses} />
+                            <Route path='/userpage/course/frontend' component={FrontEndCourse} />
+                            <Route path='/userpage/course/backend' component={BackEndCourse} />
+                            <Route path='/userpage/course/visual' component={VisualCourse} />
+                        </SideBarLayout>
+                            </Router>*/}
+                    
                 </Switch>
             </div>
         </Router>
