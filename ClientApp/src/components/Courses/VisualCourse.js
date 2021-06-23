@@ -5,7 +5,7 @@ const VisualCourse = () => {
 
     return (
         <>
-            <h1>Visual</h1>
+            <h1 className="heading_label">Visual</h1>
         </>)
 }
 export default VisualCourse;

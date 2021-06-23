@@ -66,8 +66,9 @@
 }
 
     .btn1:hover {
-        border: 1px solid #0F3A94;
+        border: 1px solid #c1b1f7;
         background: linear-gradient(to left, #c1b1f7, #52d6f4);
         transition: 1s;
         color: #FFF;
+        text-decoration: none;
     }

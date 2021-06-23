@@ -58,10 +58,9 @@ label #btn, label #cancel {
     cursor: pointer;
      color: #918e94;
     border-radius: 5px;
-    /* margin: 15px 30px;*/
+    
     font-size: 29px;
-    /* background-color: #e8d1ff;*/
-   /* box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5), inset -7px -7px 10px 0px rgba(0,0,0,.1), 3.5px 3.5px 20px 0px rgba(0,0,0,.1), 2px 2px 5px 0px rgba(0,0,0,.1);*/
+   
     height: 45px;
     width: 45px;
     text-align: center;
@@ -142,29 +141,3 @@ label #cancel {
     --gradient-color: #A890FE;
 }
 
-/*
-.frame {
-    width: 50%;
-    height: 30%;
-    margin: auto;
-    text-align: center;
-}*/
-
-/*h2 {
-    position: relative;
-    text-align: center;
-    color: #353535;
-    font-size: 60px;
-    font-family: 'Lato', sans-serif;
-    margin: 0;
-    color: #a759f5;
-}
-
-p {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    text-align: center;
-    font-size: 30px;
-    color: #d6adff;
-    margin: 0;
-}*/

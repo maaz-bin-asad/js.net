@@ -5,7 +5,7 @@ import FrontEndCourse from './FrontEndCourse';
 import BackEndCourse  from './BackEndCourse';
 import VisualCourse from './VisualCourse';
 import { SideBarLayout } from '../SideBarLayout';
-import Courses from './Courses';
+import { Courses } from './Courses';
 
 
 export class CoursesPage extends Component {

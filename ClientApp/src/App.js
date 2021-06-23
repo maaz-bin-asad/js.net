@@ -39,8 +39,7 @@ function App() {
                      
                     </Router>
                     <Router path="/auth">
-                        <Layout>
-                   
+                        <Layout>               
                             <Route path='/auth/signup' component={Signup} />
                             <Route path='/auth/login' component={Login} />
                         </Layout>
