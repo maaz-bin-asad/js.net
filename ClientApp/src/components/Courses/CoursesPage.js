@@ -1,9 +1,9 @@
 ﻿import React, { Component } from 'react';
 import Category from './Category';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import FrontEndCourse from './FrontEndCourse';
-import BackEndCourse  from './BackEndCourse';
-import VisualCourse from './VisualCourse';
+import { FrontEndCourse } from './FrontEndCourse';
+import { BackEndCourse }  from './BackEndCourse';
+import { VisualCourse } from './VisualCourse';
 import { SideBarLayout } from '../SideBarLayout';
 import { Courses } from './Courses';
 
