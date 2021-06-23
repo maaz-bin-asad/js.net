@@ -6,27 +6,14 @@
 .container1 {
     height: 100vh;
     align-content: center;
-    background-image: url('https://cdn.pixabay.com/photo/2016/03/26/13/09/workspace-1280538_960_720.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-}
-
-.card {
-    height: 370px;
-    margin-top: 8%;
-    margin-bottom: auto;
-    width: 400px;
-    background-color: rgba(0,0,0,0.5) !important;
-}
-
-.links{
-    color:white;
 }
 
 .social_icon span {
     font-size: 60px;
     margin-left: 10px;
-    color: #FFC312;
+    color: blue;
 }
 
     .social_icon span:hover {
@@ -90,22 +77,30 @@ input:focus {
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
-    background-color: rgba(0,0,0,0.5) !important;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 30px 23px 10px -7px rgba(0,0,0,0.1);
+    transition: width 1s, height 1s;
 }
+    .card:hover {
+        box-shadow: 0px 40px 48px -8px rgba(0,0,0,0.1);
+
+        height: 470px;
+    }
 
 .social_icon span {
     font-size: 60px;
     margin-left: 10px;
-    color: #FFC312;
+    color: black;
 }
 
     .social_icon span:hover {
-        color: white;
+        color: blue;
         cursor: pointer;
     }
 
 .card-header h3 {
-    color: white;
+    color: black;
 }
 
 .social_icon {
@@ -116,7 +111,7 @@ input:focus {
 
 .input-group-prepend span {
     width: 50px;
-    background-color: #FFC312;
+    background-color: white;
     color: black;
     border: 0 !important;
 }
@@ -138,18 +133,19 @@ input:focus {
     }
 
 .login_btn {
-    color: black;
-    background-color: #FFC312;
+    color: white;
+    background-color: blue;
     width: 100px;
 }
 
  .login_btn:hover {
-        color: black;
+        color: blue;
         background-color: white;
     }
 
 
 
 .links a {
+
     margin-left: 4px;
 }

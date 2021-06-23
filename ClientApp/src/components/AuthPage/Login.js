@@ -22,14 +22,14 @@ const Login = () => {
 									<div className="input-group-prepend">
 										<span className="input-group-text"><i className="fas fa-envelope"></i></span>
 									</div>
-									<input type="text" className="form-control" placeholder="Email id" name="mail"/>
+									<input type="text" className="form-control" placeholder="Email" name="mail"/>
 						
 								</div>
 								<div className="input-group form-group">
 										<div className="input-group-prepend">
 											<span className="input-group-text"><i class="fas fa-key"></i></span>
 									</div>
-									<input type="password" className="form-control" placeholder="password" name="hashpassword"/>
+									<input type="password" className="form-control" placeholder="Password" name="hashpassword"/>
 								</div>
 										<div className="row align-items-center remember"/>
 											
