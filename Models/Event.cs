@@ -9,10 +9,10 @@ namespace React5.Models
     {
         public string eventid { get; set; }
         public string eventname { get; set; }
-        public string eventType { get; set; }
+        public string eventtype { get; set; }
         public string eventurl { get; set; }
-        public DateTime starttime { get; set; }
-        public DateTime endtime { get; set; }
+        public string starttime { get; set; }
+        public long duration { get; set; }
 
     }
 }
