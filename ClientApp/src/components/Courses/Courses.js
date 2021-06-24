@@ -2,6 +2,10 @@
 import Category from './Category';
 import "./Courses.css";
 import { Link } from 'react-router-dom';
+import Maincourse from './Maincourse';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+
 
 /*const Courses = () => {
 
@@ -16,11 +20,16 @@ export default Courses;*/
 export class Courses extends Component {
     static displayName = Courses.name;
 
+
+     
     constructor(props) {
         super(props);
         this.state = { courses: [], loading: true };
     }
-
+    /*let history = useHistory();
+const handleRoute = () => {
+    history.push("/maincourse");
+}*/
     componentDidMount() {
         this.populateData();
     }
@@ -36,7 +45,8 @@ export class Courses extends Component {
                             <br />
                             <span className='coursescard_description'>Rating: {course.courserating}</span>
                     <br />
-                    <Link tag={Link} className="courses_button" to={course.courseurl} >Start</Link>
+                    <Link tag={Link} className="courses_button" to="/userpage/course/maincourse/{course.link}">Start</Link>
+{/*                    <button onClick={handleRoute}>Redirect</button>*/}
                 </div>
         </div>
                )
@@ -44,16 +54,22 @@ export class Courses extends Component {
             
         </> );
     }
-
+    
     render() {
+       
         let contents = this.state.loading
             ? <p><em>Loading..</em></p>
             : Courses.renderDiv(this.state.courses);
+         
 
         return (
+            
             <div >
+
                 <h1 className="heading_label">Trending courses</h1>
                 {contents}
+               
+                
             </div>
         );
     }
