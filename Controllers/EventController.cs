@@ -20,11 +20,18 @@ namespace React5.Controllers
             return EventServices.GetAll();
         }
 
+
         [HttpPost]
         public IActionResult create([FromBody] Event newEvent)
         {
             EventServices.Add(newEvent);
             return CreatedAtAction(nameof(create), newEvent);
+        }
+        [HttpGet]
+        [Route("getEvent/{id}")]
+        public Event GetCourse(string id)
+        {
+            return EventServices.GetEvent(id);
         }
     }
 }
