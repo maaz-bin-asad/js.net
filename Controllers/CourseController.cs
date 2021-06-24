@@ -36,8 +36,14 @@ namespace React5.Controllers
             return CreatedAtAction(nameof(Create), newCourse);
 
         }
+        [HttpGet]
+        [Route("getCourse/{id}")]
+        public RedirectResult GetCourse(string id)
+        {
+            return Redirect("/course/mainCourse?id="+id);
+        }
 
-      
+
 
 
     }

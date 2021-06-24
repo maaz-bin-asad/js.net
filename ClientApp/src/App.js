@@ -16,13 +16,6 @@ import Signup from './components/AuthPage/Signup';
 import Login from './components/AuthPage/Login';
 
 
-import FrontEndCourse from './components/Courses/FrontEndCourse';
-import BackEndCourse from './components/Courses/BackEndCourse';
-import VisualCourse from './components/Courses/VisualCourse';
-import { SideBarLayout } from './components/SideBarLayout';
-import Courses from './components/Courses/Courses';
-
-
 
 
 function App() {

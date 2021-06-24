@@ -43,10 +43,16 @@ const handleRoute = () => {
                             <h3 className='coursescard_title'>{course.coursename}</h3>
                             <span className='coursescard_description'>{course.coursedomain}</span>
                             <br />
-                            <span className='coursescard_description'>Rating: {course.courserating}</span>
+                            <span className='coursescard_description'>{course.course_difficulty}</span>
                     <br />
+<<<<<<< HEAD
                     <Link tag={Link} className="courses_button" to="/userpage/course/maincourse/{course.link}">Start</Link>
 {/*                    <button onClick={handleRoute}>Redirect</button>*/}
+=======
+                    <form action={"Course/getCourse/" + course.courseid}>
+                        <input type="submit" value="Start" />
+                        </form>
+>>>>>>> 5e4a7724efcabcaa9220a11bf0f178d37a73f021
                 </div>
         </div>
                )
