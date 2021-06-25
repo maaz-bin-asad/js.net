@@ -46,7 +46,7 @@ const handleRoute = () => {
                             <span className='coursescard_description'>{course.course_difficulty}</span>
                     <br />
 
-                    <Link tag={Link} className="courses_button" to="/userpage/course/maincourse/{course.link}">Start</Link>
+                    <Link tag={Link} className="courses_button" to="/userpage/course/maincourse/">Start</Link>
 {/*                    <button onClick={handleRoute}>Redirect</button>*/}
 
                    {/* <form action={"Course/getCourse/" + course.courseid}>
