@@ -230,8 +230,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-<<<<<<< HEAD
-
-=======
->>>>>>> 5e4a7724efcabcaa9220a11bf0f178d37a73f021
 Database/DataBase.sqlite3

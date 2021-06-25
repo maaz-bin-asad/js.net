@@ -11,22 +11,22 @@
     height:100vh;   
 }
 .video_title h3 {
-    height: 4rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     margin:1rem;
-    padding-top:1rem;
+    padding-top:.5rem;
     /*margin-right:100px;*/
     padding-left: 5rem;
     padding-right: 5rem;
     border: .01rem solid #52d6f4;
 }
 .video_description p {
-    height: 4rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     
-    padding-top: 1rem;
+    padding-top: .5rem;
     /*margin-right:100px;*/
     padding-left: 5rem;
     padding-right: 5rem;
@@ -34,12 +34,12 @@
 }
 .video_description p:hover {
     box-shadow: 0px 30px 15px -3px rgba(0,0,0,0.1);
-    transform: scale(1.02,1.02);
+   /* transform: scale(1.02,1.02);*/
     background: linear-gradient(to left, #c1b1f7, #52d6f4);
 }
 .video_title h3:hover {
     box-shadow: 0px 30px 15px -3px rgba(0,0,0,0.1);
-    transform: scale(1.02,1.02);
+   /* transform: scale(1.02,1.02);*/
     background: linear-gradient(to left, #c1b1f7, #52d6f4);
 }
 
@@ -67,10 +67,11 @@
     border: .01rem solid #52d6f4;
     font-family: 'Lato', sans-serif;
 }
-   
+
     .coursescard:hover {
         box-shadow: 0px 30px 18px -8px rgba(0,0,0,0.1);
-        transform: scale(1.02,1.02);
+        /*transform: scale(1.02);*/
+        color: #fff;
         background: linear-gradient(to left, #c1b1f7, #52d6f4);
     }
 

@@ -1,16 +1,16 @@
 ﻿import React, { Component } from 'react';
 import Category from './Category';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-<<<<<<< HEAD
+/*
 import FrontEndCourse from './FrontEndCourse';
 import BackEndCourse  from './BackEndCourse';
-import VisualCourse from './VisualCourse';
+import VisualCourse from './VisualCourse';*/
 import Maincourse from './Maincourse';
-=======
+
 import { FrontEndCourse } from './FrontEndCourse';
 import { BackEndCourse }  from './BackEndCourse';
 import { VisualCourse } from './VisualCourse';
->>>>>>> 5e4a7724efcabcaa9220a11bf0f178d37a73f021
+
 import { SideBarLayout } from '../SideBarLayout';
 import { Courses } from './Courses';
 

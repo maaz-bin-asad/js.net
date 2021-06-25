@@ -39,14 +39,14 @@ const Signup = () => {
 							<div className="row align-items-center remember" />
 
 							<div className="form-group">
-<<<<<<< HEAD
+
 								{/*<Link tag={Link} to="/auth/login">*/}
-									<input type="submit" value="Register" className="btn float-right login_btn" />
+									{/*<input type="submit" value="Register" className="btn float-right login_btn" />*/}
 								{/*</Link>*/}
-=======
+
 									<input type="submit" value="Register" className="btn float-right login_btn" />
 
->>>>>>> 5e4a7724efcabcaa9220a11bf0f178d37a73f021
+
 						  </div>
 						</form>
 					</div>
