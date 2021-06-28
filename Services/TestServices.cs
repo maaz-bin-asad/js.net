@@ -34,7 +34,7 @@ namespace React5.Services
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
             List<Test> quests = new List<Test>();
-            string query = "SELECT * FROM quests where domain=@domain AND level=@level";
+            string query = "SELECT * FROM quests where domain=@domain OR level=@level";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             myCommand.Parameters.AddWithValue("@level", level);
             myCommand.Parameters.AddWithValue("@domain", domain);
@@ -49,8 +49,12 @@ namespace React5.Services
                     obj.domain = result["domain"].ToString();
                     obj.level = result["level"].ToString();
                     obj.statement = result["statement"].ToString();
-/*                    obj.answer = result["answer"].ToString();*/
-                    obj.point = (long)result["point"];
+                    obj.points = (long)result["points"];
+                    obj.option1 = result["option1"].ToString();
+                    obj.option2 = result["option2"].ToString();
+                    obj.option3 = result["option3"].ToString();
+                    obj.option4 = result["option4"].ToString();
+
                     quests.Add(obj);
 
                 }
@@ -63,14 +67,18 @@ namespace React5.Services
         {
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
-            string Query = "INSERT INTO quests(`id`,`level`,`domain`,`statement`,`answer`,`point`) VALUES(@id,@level,@domain,@statement,@answer,@point)";
+            string Query = "INSERT INTO quests(`id`, `level`, `domain`, `statement`, `answer`, `points`, `option1`, `option2`, `option3`, `option4`) VALUES(@id,@level,@domain,@statement,@answer,@points, @option1, @option2, @option3, @option4)";
             SQLiteCommand InsertCommand = new SQLiteCommand(Query, con.myConnection);
             InsertCommand.Parameters.AddWithValue("@id", newQuiz.id);
             InsertCommand.Parameters.AddWithValue("@level", newQuiz.level);
             InsertCommand.Parameters.AddWithValue("@domain", newQuiz.domain);
             InsertCommand.Parameters.AddWithValue("@statement", newQuiz.statement);
             InsertCommand.Parameters.AddWithValue("@answer", newQuiz.answer);
-            InsertCommand.Parameters.AddWithValue("@point", newQuiz.point);
+            InsertCommand.Parameters.AddWithValue("@points", newQuiz.points);
+            InsertCommand.Parameters.AddWithValue("@option1", newQuiz.option1);
+            InsertCommand.Parameters.AddWithValue("@option2", newQuiz.option2);
+            InsertCommand.Parameters.AddWithValue("@option3", newQuiz.option3);
+            InsertCommand.Parameters.AddWithValue("@option4", newQuiz.option4);
             int res = InsertCommand.ExecuteNonQuery();
             con.CloseConnetion();
         }
