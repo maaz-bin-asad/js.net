@@ -13,13 +13,13 @@ namespace React5.Controllers
 
     public class EventController : ControllerBase
     {
-
-        [HttpGet]
-        public IEnumerable<Event> Get()
+      [HttpGet]
+       /* public async Task<IEnumerable<Event>> Get()*/
+         public IEnumerable<Event> Get()
         {
+            /* return await EventServices.GetAll();*/
             return EventServices.GetAll();
-        }
-
+         }
 
         [HttpPost]
         public IActionResult create([FromBody] Event newEvent)

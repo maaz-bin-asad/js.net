@@ -7,10 +7,12 @@ namespace React5.Models
 {
     public class Test
     {
-        public string testid { get; set; }
-        public string testname { get; set; }
-        public string testdomain { get; set; }
-        public Double score { get; set; }
-        public string testurl { get; set; }
+        public string id { get; set; }
+        public string level { get; set; }
+        public string domain { get; set; }
+        public string statement { get; set; }
+        public string answer { get; set; }
+        public long point { get; set; }
+       
     }
 }

@@ -10,7 +10,8 @@ namespace React5.Services
 {
     public class EventServices
     {
-        public static IEnumerable<Event> GetAll()
+        /* public static async Task<IEnumerable<Event>> GetAll()*/
+        public static IEnumerable<Event>GetAll()
         {
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
@@ -18,11 +19,13 @@ namespace React5.Services
             string query = "SELECT * FROM events order by starttime DESC";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             SQLiteDataReader result = myCommand.ExecuteReader();
+          /*  await Task.Delay(1000);*/
             if (result.HasRows)
             {
                 while (result.Read())
                 {
                     Event obj = new Event();
+                    /*await Task.Delay(500);*/
                     obj.eventid = result["eventid"].ToString();
                     obj.eventname = result["eventname"].ToString();
                     obj.eventtype = result["eventtype"].ToString();
@@ -81,3 +84,4 @@ namespace React5.Services
         }
     }
 }
+
