@@ -34,8 +34,6 @@ export class BackEndCourse extends Component {
                     <h3 className='coursescard_title'>{course.coursename}</h3>
                     <span className='coursescard_description'>{course.coursedomain}</span>
                     <br />
-                    <span className='coursescard_description'>{course.course_difficulty}</span>
-                    <br />
                     <form action={"Course/getCourse/" + course.courseid}>
                         <input type="submit" value="Start" />
                     </form>

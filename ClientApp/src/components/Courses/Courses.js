@@ -2,9 +2,10 @@
 import Category from './Category';
 import "./Courses.css";
 import { Link } from 'react-router-dom';
-import Maincourse from './Maincourse';
+import { Maincourse } from './Maincourse';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import ReactPlayer from 'react-player'
 
 
 /*const Courses = () => {
@@ -24,7 +25,7 @@ export class Courses extends Component {
      
     constructor(props) {
         super(props);
-        this.state = { courses: [], loading: true };
+        this.state = { Subcourses: [], loading: true };
     }
     /*let history = useHistory();
 const handleRoute = () => {
@@ -34,25 +35,16 @@ const handleRoute = () => {
         this.populateData();
     }
 
-    static renderDiv(courses) {
+    static renderDiv(Subcourses) {
         return (<>
-            {courses.map(course => <div key={course} className='coursescards'>
+            {Subcourses.map(sub => <div key={sub} className='coursescards'>
                
-               {/* <img src="#" alt='mypic' className='card_img'></img>*/}
-                <div className='coursescard'>
-                            <h3 className='coursescard_title'>{course.coursename}</h3>
-                            <span className='coursescard_description'>{course.coursedomain}</span>
-                            <br />
-                            <span className='coursescard_description'>{course.course_difficulty}</span>
-                    <br />
-
-                    <Link tag={Link} className="courses_button" to="/userpage/course/maincourse/">Start</Link>
-{/*                    <button onClick={handleRoute}>Redirect</button>*/}
-
-                   {/* <form action={"Course/getCourse/" + course.courseid}>
-                        <input type="submit" value="Start" />
-                        </form>*/}
-
+                <div className="box">
+                    <div className="video_box heading_label">
+                        <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+                    </div>
+                    <section className="heading_label video_title"><h3>{sub.subcoursename}</h3> </section>
+                    <section className="heading_label video_description"><p>Description</p> </section>
                 </div>
         </div>
                )
@@ -65,7 +57,7 @@ const handleRoute = () => {
        
         let contents = this.state.loading
             ? <p><em>Loading..</em></p>
-            : Courses.renderDiv(this.state.courses);
+            : Courses.renderDiv(this.state.Subcourses);
          
 
         return (
@@ -82,11 +74,11 @@ const handleRoute = () => {
 
     async populateData() {
         /*const response = await fetch('Course');*/
-      const response = await fetch('Course');
+      const response = await fetch('Subcourse');
 /*const response = await fetch('Course/getbydomain/Frontend');*/
 
 const data = await response.json();
 console.log(data)
-this.setState({ courses: data, loading: false });
+this.setState({ Subcourses: data, loading: false });
 }
 }

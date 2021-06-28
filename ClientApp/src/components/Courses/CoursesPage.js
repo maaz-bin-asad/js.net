@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FrontEndCourse from './FrontEndCourse';
 import BackEndCourse  from './BackEndCourse';
 import VisualCourse from './VisualCourse';*/
-import Maincourse from './Maincourse';
+import { Maincourse } from './Maincourse';
+import Play from './Play';
 
 import { FrontEndCourse } from './FrontEndCourse';
 import { BackEndCourse }  from './BackEndCourse';
@@ -32,6 +33,7 @@ export class CoursesPage extends Component {
                     
 
                 <Route path='/userpage/course/maincourse' component={Maincourse} />
+                <Route path='/userpage/course/maincourse/play' component={Play} />
                             
                           
                       
