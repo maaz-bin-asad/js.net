@@ -1,8 +1,8 @@
-﻿import React from 'react';
-import "./category.css";
+﻿import React, { Component } from 'react';
+
 import { Link } from 'react-router-dom';
 
-
+/*
 const QuizCategory = () => {
 
     return (
@@ -18,7 +18,7 @@ const QuizCategory = () => {
                         <i class="fas fa-qrcode"></i>
                    <span>Front End</span>
                 </Link>
-                <Link tag={Link} to="/userpage/quiz/backend">
+                <Link tag={Link} to={"/userpage/quiz/" + domain}>
                         <i class="fas fa-link"></i>
                         <span>Back End</span>
                 </Link>
@@ -31,4 +31,63 @@ const QuizCategory = () => {
                 
         </>)
 };
-export default QuizCategory;
+export default QuizCategory;*/
+
+
+export class QuizCategory extends Component {
+static displayName = QuizCategory.name;
+
+constructor(props) {
+    super(props);
+    this.state = { TestCategories: [], loading: true };
+}
+
+componentDidMount() {
+    this.populateData();
+}
+
+    static renderTable(TestCategories) {
+        return (
+        <>
+        <input type="checkbox" id="check"/>
+                <label for="check">
+                <i class="fas fa-times" id="btn"></i>
+                <i class="fas fa-bars" id="cancel"></i>
+                </label>
+                <div class="sidebar">
+                    <header>Menu</header>
+                    {TestCategories.map((val) =>
+                        <Link tag={Link} to={"/userpage/quiz/" + val}>
+                        <i class="fas fa-qrcode"></i>
+                        <span>{val}</span>
+                </Link>
+               
+                   )}
+                </div>
+                </>
+    );
+}
+
+render() {
+    let contents = this.state.loading
+        ? <p><em>Loading..</em></p>
+        : QuizCategory.renderTable(this.state.TestCategories);
+
+    return (
+        <div>
+            
+           {contents}
+        </div>
+    );
+}
+
+async populateData() {
+       
+const response = await fetch('Test');
+
+
+const data = await response.json();
+    console.log(data)
+    this.setState({ TestCategories: data, loading: false });
+}
+}

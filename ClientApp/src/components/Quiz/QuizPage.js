@@ -1,20 +1,89 @@
 ﻿
-
 import React, { Component } from 'react';
+
+import MainQuiz from "./MainQuiz";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { QuizSideBarLayout } from '../QuizSideBarLayout';
+import Level from "./Level";
+import UserTestProfile from "./UserTestProfile";
 
 
 export class QuizPage extends Component {
-    render() {
+    static displayName = QuizPage.name;
+
+    constructor(props) {
+        super(props);
+        this.state = { TestCategories: [], loading: true };
+    }
+
+    componentDidMount() {
+        this.populateData();
+    }
+
+    static renderTable(TestCategories) {
         return (
             <>
-              <h1>Quiz page</h1>
 
+
+                <QuizSideBarLayout>
+                    <Route exact path='/userpage/quiz' component={UserTestProfile} />
+                   
+                    {TestCategories.map((val) =>
+                            <Route path={'/userpage/quiz/' + val} component={Level} />
+                  )
+                    }
+                    
+
+                </QuizSideBarLayout>
+            </>
+        );
+    }
+
+    render() {
+        let contents = this.state.loading
+            ? <p><em>Loading..</em></p>
+            : QuizPage.renderTable(this.state.TestCategories);
+
+        return (
+            <div>
+
+                {contents}
+            </div>
+        );
+    }
+
+    async populateData() {
+
+        const response = await fetch('Test');
+
+
+        const data = await response.json();
+        console.log(data)
+        this.setState({ TestCategories: data, loading: false });
+    }
+}
+
+    /*render() {
+        return (
+            <>
+              
+
+
+                <QuizSideBarLayout>
+
+                   {*//* <Route exact path='/userpage/course' component={Courses} />*//*}
+                    <Route path='/userpage/quiz/frontend' component={FrontEndQuiz} />
+                    <Route path='/userpage/quiz/backend' component={BackEndQuiz} />
+                    <Route path='/userpage/quiz/Visual' component={VisualQuiz} />
+
+                </QuizSideBarLayout>
 
 
 
             </>)
-    }
-};
+    }*/
+
 /*export default CoursesPage;*/
 /*export class CoursesPage extends Component {
     static displayName = CoursesPage.name;
