@@ -11,7 +11,7 @@ import UserPage from './components/UserPage/UserPage';
 import { CoursesPage }  from './components/Courses/CoursesPage';
 
 import EventPage from './components/Event/EventPage';
-import QuizPage from './components/Quiz/QuizPage';
+import { QuizPage } from './components/Quiz/QuizPage';
 import Signup from './components/AuthPage/Signup';
 import Login from './components/AuthPage/Login';
 
