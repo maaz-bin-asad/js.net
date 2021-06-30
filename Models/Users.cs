@@ -12,6 +12,7 @@ namespace React5.Models
         public string username { get; set; }
         public string hashpassword { get; set; }
         public string mail { get; set; }
+        public int rating { get; set; }
 
     }
 }

@@ -46,20 +46,19 @@ namespace React5.Controllers
         {
             string mail = Convert.ToString(user.mail);
             string pass = Convert.ToString(user.hashpassword);
-            string hashed = ComputeSha256Hash(pass);
-            Console.WriteLine(hashed);
             con.OpenConnection();
-            string query = "SELECT * FROM user where hashpassword=@pass";
+            string query = "SELECT * FROM user where mail=@mail";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            myCommand.Parameters.AddWithValue("@pass", hashed);
+            myCommand.Parameters.AddWithValue("@mail", mail);
             SQLiteDataReader result = myCommand.ExecuteReader();
             if (result.HasRows)
             {
                 bool valid = false;
                 while (result.Read())
                 {
-                    string email = Convert.ToString(result["mail"]);
-                    if (email == mail)
+                    string pass_db = Convert.ToString(result["hashpassword"]);
+                    string hashed = ComputeSha256Hash(pass);
+                    if (pass_db == hashed)
                     {
                         valid = true;
                     }
@@ -107,11 +106,12 @@ namespace React5.Controllers
             {
                 con.CloseConnetion();
                 con.OpenConnection();
-                query = "insert into user ('username', 'hashpassword', 'mail') values(@username, @hashpassword, @mail)";
+                query = "insert into user ('username', 'hashpassword', 'mail', 'rating') values(@username, @hashpassword, @mail, @rating)";
                 SQLiteCommand comm = new SQLiteCommand(query, con.myConnection);
                 comm.Parameters.AddWithValue("@username", username);
                 comm.Parameters.AddWithValue("@hashpassword", hashed);
                 comm.Parameters.AddWithValue("@mail", mail);
+                comm.Parameters.AddWithValue("@rating", 0);
                 var res = comm.ExecuteNonQuery();
                 con.CloseConnetion();
                 return Redirect("/auth/login");
