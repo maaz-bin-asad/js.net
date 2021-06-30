@@ -16,7 +16,7 @@ namespace React5.Models
         public string option3 { get; set; }
         public string option4 { get; set; }
         public string answer { get; set; }
-        public long points { get; set; }
+        public int points { get; set; }
        
     }
 }

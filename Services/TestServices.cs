@@ -49,7 +49,7 @@ namespace React5.Services
                     obj.domain = result["domain"].ToString();
                     obj.level = result["level"].ToString();
                     obj.statement = result["statement"].ToString();
-                    obj.points = (long)result["points"];
+                    obj.points = Convert.ToInt32(result["points"]);
                     obj.option1 = result["option1"].ToString();
                     obj.option2 = result["option2"].ToString();
                     obj.option3 = result["option3"].ToString();
