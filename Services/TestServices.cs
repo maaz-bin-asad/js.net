@@ -34,7 +34,7 @@ namespace React5.Services
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
             List<Test> quests = new List<Test>();
-            string query = "SELECT * FROM quests where domain=@domain OR level=@level";
+            string query = "SELECT * FROM quests where domain=@domain AND level=@level";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             myCommand.Parameters.AddWithValue("@level", level);
             myCommand.Parameters.AddWithValue("@domain", domain);

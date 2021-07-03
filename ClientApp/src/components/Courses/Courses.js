@@ -73,10 +73,7 @@ const handleRoute = () => {
     }
 
     async populateData() {
-        /*const response = await fetch('Course');*/
       const response = await fetch('Subcourse');
-/*const response = await fetch('Course/getbydomain/Frontend');*/
-
 const data = await response.json();
 console.log(data)
 this.setState({ Subcourses: data, loading: false });

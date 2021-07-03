@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using React5.Models;
 using System;
-using React5.Database;
 using React5.Services;
 
 namespace React5.Controllers
@@ -14,7 +11,6 @@ namespace React5.Controllers
 
     public class UserController : ControllerBase
     {
-        DatabaseCon con = new DatabaseCon();
         public UserController()
         {
         }

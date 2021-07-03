@@ -23,7 +23,7 @@ namespace React5.Controllers
         }
 
         [HttpGet]
-        [Route("getbydomain/{Domain}")]
+        [Route("getByDomain/{Domain}")]
         public IEnumerable<Course> GetByDomain(string Domain)
         {
             return CourseServices.GetByDoamin(Domain);
