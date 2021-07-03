@@ -53,7 +53,7 @@ namespace React5.Services
             con.OpenConnection();
             List<Subcourse> subCourses = new List<Subcourse>();
             //joining two tabels for getting data from both tables
-            string query = "SELECT subcoursename,subcourseurl,description,coursename FROM subcourses INNER JOIN courses ON courses.courseid=subcourses.courseid WHERE subcourses.courseid=@id";
+ string query = "SELECT subcoursename,subcourseurl,description,temp.coursename FROM subcourses INNER JOIN (select courseid,coursename from courses where courseid=@id) as temp ON temp.courseid=subcourses.courseid WHERE subcourses.courseid=@id";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             myCommand.Parameters.AddWithValue("@id", id);
             SQLiteDataReader result = myCommand.ExecuteReader();
