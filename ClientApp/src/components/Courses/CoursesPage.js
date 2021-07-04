@@ -1,48 +1,49 @@
 ﻿import React, { Component } from 'react';
 import Category from './Category';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom";
+
 /*
 import FrontEndCourse from './FrontEndCourse';
 import BackEndCourse  from './BackEndCourse';
 import VisualCourse from './VisualCourse';*/
-import { Maincourse } from './Maincourse';
+import  Maincourse  from './Maincourse';
 import Play from './Play';
 
-import { FrontEndCourse } from './FrontEndCourse';
+import { FrontEndCourse }from './FrontEndCourse';
 import { BackEndCourse }  from './BackEndCourse';
 import { VisualCourse } from './VisualCourse';
 
 import { SideBarLayout } from '../SideBarLayout';
-import { Courses } from './Courses';
+import {Courses } from './Courses';
 
 
-export class CoursesPage extends Component {
-    render() {
+const CoursesPage =()=> {
+    
         return (
             <>
+                
                         <SideBarLayout>
                            
-                                <Route exact path='/userpage/course' component={Courses} />
-                                <Route path='/userpage/course/frontend' component={FrontEndCourse} />
-                                <Route path='/userpage/course/backend' component={BackEndCourse} />
-                                <Route path='/userpage/course/visual' component={VisualCourse} />
+                        <Route exact path='/userpage/course' component={Courses} />
+                        <Route  path='/userpage/course/frontend' component={FrontEndCourse} />
+                        <Route  path='/userpage/course/backend' component={BackEndCourse} />
+                        <Route  path='/userpage/course/visual' component={VisualCourse} />
                                 
                         </SideBarLayout>
-              
-              
-                    
-
-                <Route path='/userpage/course/maincourse' component={Maincourse} />
-                <Route path='/userpage/course/maincourse/play' component={Play} />
+                        <Route path='/userpage/course/maincourse' component={Maincourse} />
+                        <Route path='/userpage/course/maincourse/play' component={Play} />
+                       
                             
-                          
+                  
                       
 
            
                     
             </>)
     }
-};
+
+export default CoursesPage;
+
 /*export default CoursesPage;*/
 /*export class CoursesPage extends Component {
     static displayName = CoursesPage.name;

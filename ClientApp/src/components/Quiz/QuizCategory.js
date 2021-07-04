@@ -1,8 +1,8 @@
-﻿import React, { Component } from 'react';
+﻿/*import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 
-/*
+
 const QuizCategory = () => {
 
     return (
@@ -33,7 +33,43 @@ const QuizCategory = () => {
 };
 export default QuizCategory;*/
 
+import React, { useState, useEffect } from 'react'
+import Axios from 'axios';
+import { Link } from 'react-router-dom';
+const QuizCategory = () => {
 
+    const [data, setData] = useState([]);
+
+    useEffect(async () => {
+
+        await Axios.get("Test")
+            .then(result => setData(result.data));
+        console.log(data);
+       
+    }, []);
+    return (
+        <>
+            <input type="checkbox" id="check" />
+            <label for="check">
+                <i class="fas fa-times" id="btn"></i>
+                <i class="fas fa-bars" id="cancel"></i>
+            </label>
+            <div class="sidebar">
+                <header>Menu</header>
+                {data.map((val) =>
+                    <Link tag={Link} to={"/userpage/quiz/" + val}>
+                        <i class="fas fa-qrcode"></i>
+                        <span>{val}</span>
+                    </Link>
+
+                )}
+            </div>
+        </>
+    );
+}
+ export default QuizCategory;
+
+/*
 export class QuizCategory extends Component {
 static displayName = QuizCategory.name;
 
@@ -82,12 +118,10 @@ render() {
 }
 
 async populateData() {
-       
+      
 const response = await fetch('Test');
-
-
 const data = await response.json();
     console.log(data)
     this.setState({ TestCategories: data, loading: false });
 }
-}
+}*/
