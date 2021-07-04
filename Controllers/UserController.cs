@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using React5.Models;
-using System;
+using System.Threading.Tasks;
 using React5.Database;
 using React5.Services;
 
@@ -38,6 +38,14 @@ namespace React5.Controllers
             }
            return Redirect("/auth/signup?invalid=1");
            
+        }
+
+        [HttpGet("{getUser}")]
+
+        public async Task<User>GetUser([FromQuery] string username)
+        {
+
+            return await UserServices.GetUser(username);
         }
     }
 }

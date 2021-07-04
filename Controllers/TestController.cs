@@ -29,6 +29,7 @@ namespace React5.Controllers
             return domains;
         }
         [HttpGet]
+
         [Route("getTest/{domain}")]  //Route to get all questions by domain
         public async Task<IEnumerable<Test>>GetAllquest(string domain,[FromQuery] string level)
         {
@@ -36,7 +37,9 @@ namespace React5.Controllers
               return await TestServices.GetAllQuest(domain, level);
            
         }
+
         [HttpGet]
+
         [Route("checkAnswer")]    //Route to check correct answer and update rating of the user
         public string CheckAnswer([FromQuery] string option, [FromQuery] string question_id, [FromQuery] string username)   //receiving query parameters from frontend
         {

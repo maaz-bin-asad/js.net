@@ -117,5 +117,28 @@ namespace React5.Services
                 }
             return valid;
             }
+        public static async Task<User>GetUser(string username)
+        {
+            DatabaseCon con = new DatabaseCon();
+            con.OpenConnection();
+            User user = new User();
+            string query = "SELECT * FROM user WHERE username=@username";
+            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+            myCommand.Parameters.AddWithValue("@username", username);
+            SQLiteDataReader result = myCommand.ExecuteReader();
+            if (result.HasRows)
+            {
+                while (result.Read())
+                {
+                    await Task.Delay(500);
+                    user.username = result["username"].ToString();
+                    user.mail = result["mail"].ToString();
+                    user.rating = Convert.ToInt32(result["rating"]);
+
+                }
+            }
+            con.CloseConnetion();
+            return user;
+        }
     }
 }
