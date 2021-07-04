@@ -7,8 +7,8 @@ namespace React5.Models
 {
     public class EventActivity
     {
-        public string username { get; set; }
+        public string mail { get; set; }
         public string eventid { get; set; }
-        public bool ispanelists { get; set; }
+        public bool ispanellist { get; set; }
     }
 }
