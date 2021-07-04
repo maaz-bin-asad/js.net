@@ -14,36 +14,30 @@ namespace React5.Controllers
 
     public class UserController : ControllerBase
     {
-        DatabaseCon con = new DatabaseCon();
         public UserController()
         {
         }
        
-            [HttpPost]
+        [HttpPost]    //Route to login the user
         public RedirectResult LoginUser([FromForm] User user)
         {
-        /*if credentials are valid */
+         //  if credentials are valid
             if(UserServices.LoginUser(user))
                 return Redirect("/userpage");
-         /*if credentials are not valid */
-            return Redirect("/auth/login");
-      }
-        [HttpPost("{signup}")]
+         // if credentials are not valid 
+            return Redirect("/auth/login?invalid=1");
+        }
 
-        public RedirectResult RegisterUser([FromForm] User user)
+        [HttpPost("{signup}")]   //Route to register the user
+
+        public RedirectResult RegisterUser([FromForm] User user) 
         {
             if (UserServices.RegisterUser(user))
             {
-               return Redirect("/auth/login");
+               return Redirect("/auth/login?registered=1");
             }
-           return Redirect("/auth/signup");
+           return Redirect("/auth/signup?invalid=1");
            
         }
     }
 }
-
-/*
- Test credentials
- ezio@assasinscreeed.com
-jhewe
-*/

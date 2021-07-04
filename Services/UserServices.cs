@@ -30,15 +30,15 @@ namespace React5.Services
                 return builder.ToString();
             }
         }
-        public static bool ValidateCredentials(User user,string opreation)
+        public static bool ValidateCredentials(User user, string operation)  //function to check valid strings for credentials
         {
-            if (opreation == "Register")
+            if (operation == "Register")
             {
                 Console.WriteLine(user.username);
                 if (user.username == "" || user.mail == "" || user.hashpassword == "")
                     return false;
             }
-            else if(opreation == "Login")
+            else if(operation == "Login")
             {
                 if (user.mail == "" || user.hashpassword == "")
                     return false;
@@ -49,7 +49,7 @@ namespace React5.Services
 
     public static bool RegisterUser(User user)
         {
-            if (!ValidateCredentials(user,"Register"))  /*validate credentials for backend side*/
+            if (!ValidateCredentials(user,"Register"))  //validate credentials for backend side
             {
                 Console.WriteLine("Credentials required");
                 return false;  // redirect to signup page
@@ -76,7 +76,7 @@ namespace React5.Services
             {
                 con.CloseConnetion();
                 con.OpenConnection();
-                query = "insert into user ('username', 'hashpassword', 'mail', 'rating') values(@username, @hashpassword, @mail, @rating)";
+                query = "INSERT INTO user ('username', 'hashpassword', 'mail', 'rating') VALUES(@username, @hashpassword, @mail, @rating)";
                 SQLiteCommand comm = new SQLiteCommand(query, con.myConnection);
                 comm.Parameters.AddWithValue("@username", username);
                 comm.Parameters.AddWithValue("@hashpassword", hashed);
@@ -96,7 +96,7 @@ namespace React5.Services
             string mail = Convert.ToString(user.mail);
                 string pass = Convert.ToString(user.hashpassword);
                 con.OpenConnection();
-                string query = "SELECT * FROM user where mail=@mail";
+                string query = "SELECT * FROM user WHERE mail=@mail";
                 SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
                 myCommand.Parameters.AddWithValue("@mail", mail);
                 SQLiteDataReader result = myCommand.ExecuteReader();

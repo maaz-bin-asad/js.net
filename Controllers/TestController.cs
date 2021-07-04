@@ -14,13 +14,13 @@ namespace React5.Controllers
     [Route("[controller]")]
     public class TestController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet]      //Roue to get all questions
         public async Task<IEnumerable<string>> Get()
         {
             List<string> domains = new List<string>();
             try
             {
-                 domains= (List<string>)await TestServices.GetAll();
+                 domains= (List<string>) await TestServices.GetAll();
             }
             catch(Exception ex)
             {
@@ -29,11 +29,10 @@ namespace React5.Controllers
             return domains;
         }
         [HttpGet]
-        [Route("getTest")]
-        public async Task<IEnumerable<Test>>GetAllquest([FromQuery] string domain,[FromQuery] string level)
+        [Route("getTest/{domain}")]  //Route to get all questions by domain
+        public async Task<IEnumerable<Test>>GetAllquest(string domain,[FromQuery] string level)
         {
           
-                Console.WriteLine(domain + "  " + level);
               return await TestServices.GetAllQuest(domain, level);
            
         }
