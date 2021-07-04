@@ -40,9 +40,7 @@ const Signup = () => {
 
 							<div className="form-group">
 
-								{/*<Link tag={Link} to="/auth/login">*/}
-									{/*<input type="submit" value="Register" className="btn float-right login_btn" />*/}
-								{/*</Link>*/}
+							
 
 									<input type="submit" value="Register" className="btn float-right login_btn" />
 

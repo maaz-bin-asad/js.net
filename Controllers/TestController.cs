@@ -30,14 +30,22 @@ namespace React5.Controllers
         }
         [HttpGet]
 
-        [Route("getTest/{domain}")]  //Route to get all questions by domain
-        public async Task<IEnumerable<Test>>GetAllquest(string domain,[FromQuery] string level)
+        [Route("getQuestions")]  //Route to get all questions by domain
+        public async Task<IEnumerable<Test>>GetAllquest([FromQuery] string domain,[FromQuery] string level)
         {
           
               return await TestServices.GetAllQuest(domain, level);
            
         }
+        [HttpGet]
 
+        [Route("getTest/{domain}")]  //Route to get all questions by domain
+        public RedirectResult AddQueryParameters(string domain, [FromQuery] string level)
+        {
+
+            return Redirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level);
+
+        }
         [HttpGet]
 
         [Route("checkAnswer")]    //Route to check correct answer and update rating of the user
