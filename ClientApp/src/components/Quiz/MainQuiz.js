@@ -9,7 +9,7 @@ export class MainQuiz extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { Subcourses: [], loading: true };
+        this.state = {Questions:[], loading: true };
     }
     /*let history = useHistory();
 const handleRoute = () => {
@@ -19,22 +19,43 @@ const handleRoute = () => {
         this.populateData();
     }
 
-    static renderDiv(Subcourses) {
+    static renderDiv(Questions) {
         return (<>
-            {Subcourses.map(sub => <div key={sub} className='coursescards'>
+            {Questions.map(question => <div key={question} className='coursescards'>
 
                 <div className="box">
+                    
+                    <section className="heading_label video_title"><h3>{question.statement}</h3> </section>
+                    <form action="Test/checkAnswer">
+                        <input type="hidden" value={question.id} name="question_id" />
+                        <input type="hidden" value="a" name="username" />
+                        <input type="hidden" value={question.option1} name="option" />
+                        <input type="submit" value={question.option1} />
+                    </form>
+                    <form action="Test/checkAnswer">
+                        <input type="hidden" value={question.id} name="question_id" />
+                        <input type="hidden" value="a" name="username" />
+                        <input type="hidden" value={question.option2} name="option" />
+                        <input type="submit" value={question.option2} />
+                    </form>
+                    <form action="Test/checkAnswer">
+                        <input type="hidden" value={question.id} name="question_id" />
+                        <input type="hidden" value="a" name="username" />
+                        <input type="hidden" value={question.option3} name="option" />
+                        <input type="submit" value={question.option3} />
+                    </form>
+                    <form action="Test/checkAnswer">
+                        <input type="hidden" value={question.id} name="question_id" />
+                        <input type="hidden" value="a" name="username" />
+                        <input type="hidden" value={question.option} name="option" />
+                        <input type="submit" value={question.option4} />
+                    </form>
                    
-                    <section className="heading_label video_title"><h3>{sub.statement}</h3> </section>
-                    <section className="heading_label video_description"><p>{sub.option1}</p> </section>
-                    <section className="heading_label video_description"><p>{sub.option2}</p> </section>
-                    <section className="heading_label video_description"><p>{sub.option3}</p> </section>
-                    <section className="heading_label video_description"><p>{sub.option4}</p> </section>
                 </div>
             </div>
             )
             }
-
+         
         </>);
     }
 
@@ -42,13 +63,13 @@ const handleRoute = () => {
 
         let contents = this.state.loading
             ? <p><em>Loading..</em></p>
-            : MainQuiz.renderDiv(this.state.Subcourses);
+            : MainQuiz.renderDiv(this.state.Questions);
 
 
         return (
 
             <div >
-
+                
                 <h1 className="heading_label">Questions</h1>
                 {contents}
 
@@ -58,12 +79,18 @@ const handleRoute = () => {
     }
 
     async populateData() {
-        /*const response = await fetch('Course');*/
-        const response = await fetch('Test/getTest/frontend?level=easy');
-        /*const response = await fetch('Course/getbydomain/Frontend');*/
+        
+        
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        console.log(params)
+        const level = params.level
+        const domain = params.domain
+        const response = await fetch("Test/getQuestions?domain="+domain+"&level="+level);
+        
 
         const data = await response.json();
         console.log(data)
-        this.setState({ Subcourses: data, loading: false });
+        this.setState({ Questions: data, loading: false });
     }
 }

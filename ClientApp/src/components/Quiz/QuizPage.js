@@ -5,7 +5,7 @@ import {MainQuiz} from "./MainQuiz";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QuizSideBarLayout } from '../QuizSideBarLayout';
-import Level from "./Level";
+import {Level }from "./Level";
 import UserTestProfile from "./UserTestProfile";
 
 
@@ -30,12 +30,14 @@ export class QuizPage extends Component {
                     <Route exact path='/userpage/quiz' component={UserTestProfile} />
                    
                     {TestCategories.map((val) =>
-                        <Route path={'/userpage/quiz/' + val} component={MainQuiz} />
+                        <Route path={'/userpage/quiz/' + val} component={Level} />
                   )
                     }
                     
 
                 </QuizSideBarLayout>
+                <Route path={'/userpage/quiz/mainquiz'} component={MainQuiz} />
+                
             </>
         );
     }
