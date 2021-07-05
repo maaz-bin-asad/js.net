@@ -10,7 +10,7 @@ namespace React5.Controllers
     [Route("[controller]")]
     public class SubCourseController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet]    //Route to get all sub courses
         public IEnumerable<Subcourse> GetSubCourses()
         {
             return SubCourseServices.GetSubCourses();

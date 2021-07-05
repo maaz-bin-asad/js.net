@@ -30,14 +30,16 @@ namespace React5.Services
                 return builder.ToString();
             }
         }
-        public static bool ValidateCredentials(User user, string opreation)
+
+        public static bool ValidateCredentials(User user, string operation)  //function to check valid strings for credentials
         {
-            if (opreation == "Register")
+            if (operation == "Register")
             {
                 if (user.username == "" || user.mail == "" || user.hashpassword == "")
                     return false;
             }
-            else if (opreation == "Login")
+
+            else if(operation == "Login")
             {
                 if (user.mail == "" || user.hashpassword == "")
                     return false;
@@ -48,8 +50,10 @@ namespace React5.Services
 
         public static bool RegisterUser(User user)
         {
+
             bool valid = false;
-            if (!ValidateCredentials(user, "Register"))  /*validate credentials on backend side*/
+        
+            if (!ValidateCredentials(user,"Register"))  //validate credentials for backend side
             {
                 Console.WriteLine("Credentials required");
                 return false;  // redirect to signup page
@@ -62,7 +66,8 @@ namespace React5.Services
                 string hashed = ComputeSha256Hash(pass);
                 string username = Convert.ToString(user.username);
                 con.OpenConnection();
-                string query = "insert into user ('username', 'hashpassword', 'mail', 'rating') values(@username, @hashpassword, @mail, @rating)";
+
+                query = "INSERT INTO user ('username', 'hashpassword', 'mail', 'rating') VALUES(@username, @hashpassword, @mail, @rating)";
                 SQLiteCommand comm = new SQLiteCommand(query, con.myConnection);
                 comm.Parameters.AddWithValue("@username", username);
                 comm.Parameters.AddWithValue("@hashpassword", hashed);
@@ -93,7 +98,7 @@ namespace React5.Services
                 string pass = Convert.ToString(user.hashpassword);
                 string hashed = ComputeSha256Hash(pass);
                 con.OpenConnection();
-                string query = "SELECT * FROM user where mail=@mail";
+                string query = "SELECT * FROM user WHERE mail=@mail";
                 SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
                 myCommand.Parameters.AddWithValue("@mail", mail);
                 SQLiteDataReader result = myCommand.ExecuteReader();
@@ -110,6 +115,7 @@ namespace React5.Services
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -121,5 +127,28 @@ namespace React5.Services
             return valid;
         }
     
+        public static async Task<User>GetUser(string username)
+        {
+            DatabaseCon con = new DatabaseCon();
+            con.OpenConnection();
+            User user = new User();
+            string query = "SELECT * FROM user WHERE username=@username";
+            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+            myCommand.Parameters.AddWithValue("@username", username);
+            SQLiteDataReader result = myCommand.ExecuteReader();
+            if (result.HasRows)
+            {
+                while (result.Read())
+                {
+                    await Task.Delay(500);
+                    user.username = result["username"].ToString();
+                    user.mail = result["mail"].ToString();
+                    user.rating = Convert.ToInt32(result["rating"]);
+
+                }
+            }
+            con.CloseConnetion();
+            return user;
+        }
     }
 }
