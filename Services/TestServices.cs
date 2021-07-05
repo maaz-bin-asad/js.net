@@ -83,7 +83,7 @@ namespace React5.Services
             con.CloseConnetion();
         }
 
-        public static string CheckAnswer(string option,string question_id,string username)
+        public static bool CheckAnswer(string option,string question_id,string username)
         {
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
@@ -159,13 +159,13 @@ namespace React5.Services
                     result = myCommand.ExecuteReader();
                     con.CloseConnetion();
                 }
-                return "Correct answer!";
+                return true;
                 //will add a redirect result that sends the redirect URL to the same page with query parameter telling that it was correct answer
 
 
             }
            
-            return "Wrong answer!";
+            return false;
         }
     }
 }

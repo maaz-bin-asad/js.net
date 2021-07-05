@@ -57,7 +57,7 @@ export class FrontEndCourse extends Component {
         return (<>
             {courses.map(course => <div key={course} className='coursescards'>
 
-                { <img src="#" alt='mypic' className='card_img'></img>}
+               
                 <div className='coursescard'>
                     <h3 className='coursescard_title'>{course.coursename}</h3>
                     <span className='coursescard_description'>{course.coursedomain}</span>
