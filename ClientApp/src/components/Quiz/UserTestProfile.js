@@ -56,12 +56,12 @@ const handleRoute = () => {
             <div className="profile_wrap">
 
                 <div className="avatar">
-                    <img src="https://images.unsplash.com/photo-1595085610978-b5e35eb24dcf?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" />
+                    <img src="https://source.unsplash.com/E3NUmCScugo/300x300" />
                 </div>
                 <div className="detail_wrap">
-                    <h3 className="name">{User.username}</h3>
-                    <h4 className="occupation">{ User.mail}</h4>
-                    <p className="location">Rating : { User.rating}</p>
+                    <h3 className="alert alert-info">{User.username}</h3>
+                    <h4 className="alert alert-info">{ User.mail}</h4>
+                    <p className="alert alert-info">Rating : { User.rating}</p>
                 </div>
             </div>
             
