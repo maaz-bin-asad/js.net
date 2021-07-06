@@ -83,7 +83,7 @@ namespace React5.Services
             con.CloseConnetion();
         }
 
-        public static string CheckAnswer(string option,string question_id,string username)
+        public static bool CheckAnswer(string option,string question_id,string username)
         {
             /*
            Console.WriteLine(option);
@@ -111,50 +111,68 @@ namespace React5.Services
             if (ans == option)      //if user answer is equal to stored answer for that question
             {
                 bool answered = false;   // flag variable to check if user has already answered the question
-                int rating = 0;
                 con.OpenConnection();
-                query = "SELECT t2.rating FROM (SELECT username FROM progress WHERE username=@username AND questionid=@question_id) AS t1" +
-                    " INNER JOIN (SELECT username,rating FROM user WHERE username=@username) AS t2 ON t1.username=t2.username";  //check if entry with same user and question exisits and find the user rating
+                query = "SELECT * FROM progress where username=@username AND questionid=@question_id";  //check if entry with same user and question exisits
                 myCommand = new SQLiteCommand(query, con.myConnection);
                 myCommand.Parameters.AddWithValue("@username", username);
                 myCommand.Parameters.AddWithValue("@question_id", question_id);
                 result = myCommand.ExecuteReader();
                 if (result.HasRows)
                 {
+                    answered = true;
+                }
+                con.CloseConnetion();
+                int rating = 0;
+                con.OpenConnection();
+                query = "SELECT * FROM user where username=@username";
+                myCommand = new SQLiteCommand(query, con.myConnection);
+                myCommand.Parameters.AddWithValue("@username", username);
+                result = myCommand.ExecuteReader();
+                if (result.HasRows)
+                {
                     while (result.Read())
                     {
-                        answered = true;
-                        rating = (int)result["rating"];
+
+                        rating = Convert.ToInt32(result["rating"]);
+                        if (!answered)
+                        {
+                            rating += score;
+                        }
+                        Console.WriteLine(rating);
+
                     }
                 }
-           
-                if (answered)
+                con.CloseConnetion();
+                if (!answered)
                 {
-                    return "Already Answered!";
-                }
-                else {
-                    rating += score;
-            
+                    con.OpenConnection();
                     query = "UPDATE user SET rating=@rating WHERE username=@username";    //updating the rating
                     myCommand = new SQLiteCommand(query, con.myConnection);
                     myCommand.Parameters.AddWithValue("@rating", rating);
                     myCommand.Parameters.AddWithValue("@username", username);
                     result = myCommand.ExecuteReader();
+                    con.CloseConnetion();
+                }
+                if (!answered)
+                {
+                    con.OpenConnection();
                     query = "INSERT INTO progress (username, questionid) VALUES (@username, @question_id)";
                     myCommand = new SQLiteCommand(query, con.myConnection);
                     myCommand.Parameters.AddWithValue("@username", username);
                     myCommand.Parameters.AddWithValue("@question_id", question_id);
                     result = myCommand.ExecuteReader();
                     con.CloseConnetion();
-                    return "Correct answer!";
                 }
-               
+                return true;
                 //will add a redirect result that sends the redirect URL to the same page with query parameter telling that it was correct answer
 
 
             }
-           
-            return "Wrong answer!";
+
+            return false;
         }
+
+
+
     }
 }

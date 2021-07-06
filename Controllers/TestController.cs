@@ -39,7 +39,7 @@ namespace React5.Controllers
         }
         [HttpGet]
         [Route("checkAnswer")]    //Route to check correct answer and update rating of the user
-        public string CheckAnswer([FromQuery] string option, [FromQuery] string question_id, [FromQuery] string username)   //receiving query parameters from frontend
+        public bool CheckAnswer([FromQuery] string option, [FromQuery] string question_id, [FromQuery] string username)   //receiving query parameters from frontend
         {
             return TestServices.CheckAnswer(option, question_id, username);
 
