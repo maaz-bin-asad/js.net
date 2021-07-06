@@ -2,16 +2,44 @@
 import Category from './Category';
 import "./Courses.css";
 import { Link } from 'react-router-dom';
+/*import React, { useState, useEffect } from 'react'
+import Axios from 'axios';
 
-/*const Courses = () => {
+const FrontEndCourse = () => {
+    
+    const [data, setData] = useState([]);
+
+    useEffect(async () => {
+
+        await Axios.get('Course/getbydomain/Frontend')
+            .then(result => setData(result.data));
+        console.log(data);
+
+    }, []);
 
     return (
         <>
-
-            <h1>Trending course</h1>
+            
+            {data.map(course => <div key={course} className='coursescards'>
+                <div className='coursescard'>
+                    <h3 className='coursescard_title'>{course.coursename}</h3>
+                    <span className='coursescard_description'>{course.coursedomain}</span>
+                    <br />
+                    <br />
+                    <form action={"Course/getCourse/" + course.courseid}>
+                        <input type="submit" value="Start" />
+                    </form>
+                </div>
+            </div>
+            )
+            }
+          
         </>)
-}
-export default Courses;*/
+
+};
+
+
+export default FrontEndCourse;*/
 
 export class FrontEndCourse extends Component {
     static displayName = FrontEndCourse.name;
@@ -29,7 +57,7 @@ export class FrontEndCourse extends Component {
         return (<>
             {courses.map(course => <div key={course} className='coursescards'>
 
-                {/* <img src="#" alt='mypic' className='card_img'></img>*/}
+               
                 <div className='coursescard'>
                     <h3 className='coursescard_title'>{course.coursename}</h3>
                     <span className='coursescard_description'>{course.coursedomain}</span>

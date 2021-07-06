@@ -34,7 +34,8 @@ namespace React5.Services
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
             List<Test> quests = new List<Test>();
-            string query = "SELECT * FROM quests where domain=@domain AND level=@level";
+
+            string query = "SELECT * FROM quests WHERE domain=@domain AND level=@level";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             myCommand.Parameters.AddWithValue("@level", level);
             myCommand.Parameters.AddWithValue("@domain", domain);
@@ -85,14 +86,9 @@ namespace React5.Services
 
         public static bool CheckAnswer(string option,string question_id,string username)
         {
-            /*
-           Console.WriteLine(option);
-           Console.WriteLine(question_id);
-           Console.WriteLine(username);
-           */
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
-            string query = "SELECT * FROM quests where id=@question_id";
+            string query = "SELECT * FROM quests WHERE id=@question_id";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             myCommand.Parameters.AddWithValue("@question_id", question_id);
             SQLiteDataReader result = myCommand.ExecuteReader();
@@ -168,11 +164,8 @@ namespace React5.Services
 
 
             }
-
             return false;
         }
-
-
 
     }
 }

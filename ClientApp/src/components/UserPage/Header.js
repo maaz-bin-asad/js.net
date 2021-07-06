@@ -33,13 +33,13 @@ export class Header extends Component {
                             <ul className="navbar-nav flex-grow">
 
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/userpage/course">Courses</NavLink>
+                                    <NavLink tag={Link} className="btn btn-info mx-2" to="/userpage/course">Courses</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/userpage/Event">Event</NavLink>
+                                    <NavLink tag={Link} className="btn btn-info mx-2" to="/userpage/Event">Events</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/userpage/Quiz">Quiz</NavLink>
+                                    <NavLink tag={Link} className="btn btn-info mx-2" to="/userpage/Quiz">Tests</NavLink>
                                 </NavItem>
                             </ul>
                         </Collapse>

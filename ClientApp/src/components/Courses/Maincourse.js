@@ -1,24 +1,57 @@
-import React, { Component } from 'react';
+
 import Category from './Category';
 import ReactPlayer from 'react-player'
 import "./Courses.css";
-/*
+
+
+import React, { useState, useEffect } from 'react'
+import Axios from 'axios';
+
 const Maincourse = () => {
+
+    const [data, setData] = useState([]);
+
+    useEffect(async () => {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        console.log(params)
+        var id = params.id
+        await Axios.get('Subcourse/'+id)
+            .then(result => setData(result.data));
+        console.log(data);
+
+    }, []);
+
+
+
 
     return (
         <>
-            <h1 className="heading_label">"" course</h1>
-            <div className="box">
-                <div className="video_box heading_label">
-                    <div className="element_style"><ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U'/></div>
-                </div>
-                <section className="heading_label video_title"><h3>Title</h3> </section>
-                <section className="heading_label video_description"><p>Description</p> </section>
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Topic</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col">What you will learn</th>
+                        <th scope="col">Watch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map(sub => <tr key={sub} className='table-info'>
+                        <th scope="row">{sub.subcoursename}</th>
+                        <td>Easy</td>
+                        <td>{sub.description}</td>
+                        <td><a href="/userpage/course/maincourse/play">Watch video</a></td>
+                    </tr>
+                    )
+                    }
+                </tbody>
+            </table>
+
         </>)
 }
 export default Maincourse;
-*/
+/*
 export class Maincourse extends Component {
     static displayName = Maincourse.name;
 
@@ -28,10 +61,10 @@ export class Maincourse extends Component {
         super(props);
         this.state = { course: [], loading: true };
     }
-    /*let history = useHistory();
+    *//*let history = useHistory();
 const handleRoute = () => {
     history.push("/maincourse");
-}*/
+}*//*
     componentDidMount() {
         this.populateData();
     }
@@ -83,16 +116,17 @@ const handleRoute = () => {
     }
 
     async populateData() {
-        /*const response = await fetch('Course');*/
+        *//*const response = await fetch('Course');*//*
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
         console.log(params)
         var id = params.id
         const response = await fetch('Subcourse/'+id);
-        /*const response = await fetch('Course/getbydomain/Frontend');*/
+        *//*const response = await fetch('Course/getbydomain/Frontend');*//*
 
         const data = await response.json();
         console.log(data)
         this.setState({ course: data, loading: false });
     }
 }
+*/
