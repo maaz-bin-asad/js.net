@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using React5.Database;
 
+
+
 namespace React5.Services
 {
     public class UserServices
@@ -107,11 +109,13 @@ namespace React5.Services
                     {
                         string pass_db = Convert.ToString(result["hashpassword"]);
                         string hashed = ComputeSha256Hash(pass);
-                        if (pass_db == hashed)
-                        {
-                            valid = true;
-                        }
+                    if (pass_db == hashed)
+                    {
+
+                        valid = true;
+
                     }
+                }
                 con.CloseConnetion(); 
 
                 }

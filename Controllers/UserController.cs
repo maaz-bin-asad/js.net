@@ -5,6 +5,11 @@ using React5.Models;
 using System.Threading.Tasks;
 using React5.Database;
 using React5.Services;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 
 namespace React5.Controllers
 {
@@ -21,10 +26,19 @@ namespace React5.Controllers
         [HttpPost]    //Route to login the user
         public RedirectResult LoginUser([FromForm] User user)
         {
-         //  if credentials are valid
-            if(UserServices.LoginUser(user))
+            //  if credentials are valid
+            if (UserServices.LoginUser(user))
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.mail)
+                };
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
+
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
                 return Redirect("/userpage");
-         // if credentials are not valid 
+            }
+            // if credentials are not valid 
             return Redirect("/auth/login?invalid=1");
         }
 
@@ -39,9 +53,9 @@ namespace React5.Controllers
            return Redirect("/auth/signup?invalid=1");
            
         }
-
+        
         [HttpGet("{getUser}")]
-
+        [Authorize]
         public async Task<User>GetUser([FromQuery] string username)
         {
 
