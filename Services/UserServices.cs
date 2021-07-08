@@ -67,7 +67,7 @@ namespace React5.Services
                 string username = Convert.ToString(user.username);
                 con.OpenConnection();
 
-                query = "INSERT INTO user ('username', 'hashpassword', 'mail', 'rating') VALUES(@username, @hashpassword, @mail, @rating)";
+                string query = "INSERT INTO user ('username', 'hashpassword', 'mail', 'rating') VALUES(@username, @hashpassword, @mail, @rating)";
 
                 SQLiteCommand comm = new SQLiteCommand(query, con.myConnection);
                 comm.Parameters.AddWithValue("@username", username);
@@ -77,8 +77,8 @@ namespace React5.Services
                 var res = comm.ExecuteNonQuery();
                 valid = true;
             }
-            catch (Exception ex) {
-               Console.WriteLine(ex.Message);
+            catch (Exception) {
+               Console.WriteLine("This account already exists");
             }
             finally
             {
@@ -117,9 +117,9 @@ namespace React5.Services
                 }
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Some error occurred");
             }
             finally
             {
@@ -131,24 +131,34 @@ namespace React5.Services
         public static async Task<User>GetUser(string username)
         {
             DatabaseCon con = new DatabaseCon();
-            con.OpenConnection();
             User user = new User();
-            string query = "SELECT * FROM user WHERE username=@username";
-            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            myCommand.Parameters.AddWithValue("@username", username);
-            SQLiteDataReader result = myCommand.ExecuteReader();
-            if (result.HasRows)
+            try
             {
-                while (result.Read())
+                con.OpenConnection();
+                string query = "SELECT * FROM user WHERE username=@username";
+                SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+                myCommand.Parameters.AddWithValue("@username", username);
+                SQLiteDataReader result = myCommand.ExecuteReader();
+                if (result.HasRows)
                 {
-                    await Task.Delay(500);
-                    user.username = result["username"].ToString();
-                    user.mail = result["mail"].ToString();
-                    user.rating = Convert.ToInt32(result["rating"]);
+                    while (result.Read())
+                    {
+                        await Task.Delay(500);
+                        user.username = result["username"].ToString();
+                        user.mail = result["mail"].ToString();
+                        user.rating = Convert.ToInt32(result["rating"]);
 
+                    }
                 }
             }
-            con.CloseConnetion();
+            catch (Exception)
+            {
+                Console.WriteLine("Some error occurred");
+            }
+            finally
+            {
+                con.CloseConnetion();
+            }
             return user;
         }
 

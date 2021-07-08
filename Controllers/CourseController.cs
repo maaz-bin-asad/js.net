@@ -38,9 +38,9 @@ namespace React5.Controllers
         }
         [HttpGet]
         [Route("getCourse/{id}")]
-        public RedirectResult GetCourse(string id)
+        public IActionResult GetCourse(string id)
         {
-            return Redirect("/userpage/course/maincourse?id=" + id);
+            return LocalRedirect("/userpage/course/maincourse?id=" + id);
         }
 
 

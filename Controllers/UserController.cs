@@ -23,7 +23,7 @@ namespace React5.Controllers
         }
        
         [HttpPost]    //Route to login the user
-        public RedirectResult LoginUser([FromForm] User user)
+        public IActionResult LoginUser([FromForm] User user)
         {
             //  if credentials are valid
             if (UserServices.LoginUser(user))
@@ -38,22 +38,31 @@ namespace React5.Controllers
                 return Redirect("/userpage");
             }
             // if credentials are not valid 
-            return Redirect("/auth/login?invalid=1");
+            return LocalRedirect("/auth/login?invalid=1");
         }
 
-        [HttpPost("{signup}")]   //Route to register the user
+        [HttpGet("logout")]
 
-        public RedirectResult RegisterUser([FromForm] User user) 
+        public async Task<IActionResult> LogOut()
+        {
+            //SignOutAsync is Extension method for SignOut    
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //Redirect to home page    
+            return LocalRedirect("/auth/login");
+        }
+        [HttpPost("signup")]   //Route to register the user
+
+        public IActionResult RegisterUser([FromForm] User user) 
         {
             if (UserServices.RegisterUser(user))
             {
                return Redirect("/auth/login?registered=1");
             }
-           return Redirect("/auth/signup?invalid=1");
+           return LocalRedirect("/auth/signup?invalid=1");
            
         }
         
-        [HttpGet("{getUser}")]
+        [HttpGet("getUser")]
         [Authorize]
         public async Task<User>GetUser([FromQuery] string username)
         {

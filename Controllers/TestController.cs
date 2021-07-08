@@ -39,16 +39,16 @@ namespace React5.Controllers
         }
         [HttpGet]
         [Route("getTest/{domain}")]  //Route to get all questions by domain
-        public RedirectResult AddQueryParameters(string domain, [FromQuery] string level)
+        public IActionResult AddQueryParameters(string domain, [FromQuery] string level)
         {
 
-            return Redirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level);
+            return LocalRedirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level);
 
         }
         [HttpGet]
 
         [Route("checkAnswer")]    //Route to check correct answer and update rating of the user
-        public RedirectResult CheckAnswer([FromQuery] string option, [FromQuery] string question_id, [FromQuery] string username, [FromQuery]  string domain, [FromQuery] string level)   //receiving query parameters from frontend
+        public IActionResult CheckAnswer([FromQuery] string option, [FromQuery] string question_id, [FromQuery] string username, [FromQuery]  string domain, [FromQuery] string level)   //receiving query parameters from frontend
         {
             Console.WriteLine("workinggggggg");
             Console.WriteLine(option);
@@ -58,11 +58,11 @@ namespace React5.Controllers
             Console.WriteLine(level);
             if (TestServices.CheckAnswer(option, question_id, username))
             {
-                return Redirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level+"&correct=1");
+                return LocalRedirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level+"&correct=1");
             }
             else
             {
-                return Redirect("/userpage/quiz/mainquiz?domain=" + domain + "&level=" + level + "&correct=0");
+                return LocalRedirect("/userpage/quiz/mainquiz?domain=" + domain + "&level=" + level + "&correct=0");
             }
         }
 
