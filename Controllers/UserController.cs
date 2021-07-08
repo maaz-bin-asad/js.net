@@ -35,7 +35,7 @@ namespace React5.Controllers
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
 
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                return Redirect("/userpage");
+                return LocalRedirect("/userpage");
             }
             // if credentials are not valid 
             return LocalRedirect("/auth/login?invalid=1");
@@ -56,7 +56,7 @@ namespace React5.Controllers
         {
             if (UserServices.RegisterUser(user))
             {
-               return Redirect("/auth/login?registered=1");
+               return LocalRedirect("/auth/login?registered=1");
             }
            return LocalRedirect("/auth/signup?invalid=1");
            
