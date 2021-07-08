@@ -30,71 +30,72 @@ namespace React5.Services
                 return builder.ToString();
             }
         }
+
         public static bool ValidateCredentials(User user, string operation)  //function to check valid strings for credentials
         {
             if (operation == "Register")
             {
-                Console.WriteLine(user.username);
                 if (user.username == "" || user.mail == "" || user.hashpassword == "")
                     return false;
             }
+
             else if(operation == "Login")
             {
                 if (user.mail == "" || user.hashpassword == "")
                     return false;
-           }
+            }
             return true;
 
         }
 
-    public static bool RegisterUser(User user)
+        public static bool RegisterUser(User user)
         {
-            if (!ValidateCredentials(user,"Register"))  //validate credentials for backend side
+            bool valid = false;
+            if (!ValidateCredentials(user, "Register"))  /*validate credentials on backend side*/
             {
                 Console.WriteLine("Credentials required");
                 return false;  // redirect to signup page
             }
             DatabaseCon con = new DatabaseCon();
-            string mail = Convert.ToString(user.mail);
-            string pass = Convert.ToString(user.hashpassword);
-            string hashed = ComputeSha256Hash(pass);
-            string username = Convert.ToString(user.username);
-            con.OpenConnection();
-            string query = "SELECT * FROM user where mail=@email OR username=@username"; 
-            // provided username or email matches then flash a message user already exits
-            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            myCommand.Parameters.AddWithValue("@email", mail);
-            myCommand.Parameters.AddWithValue("@username", username);
-            SQLiteDataReader result = myCommand.ExecuteReader();
-            if (result.HasRows)
+            try
             {
-                con.CloseConnetion();
-                return false;
-
-            }
-            else
-            {
-                con.CloseConnetion();
+                string mail = Convert.ToString(user.mail);
+                string pass = Convert.ToString(user.hashpassword);
+                string hashed = ComputeSha256Hash(pass);
+                string username = Convert.ToString(user.username);
                 con.OpenConnection();
+
                 query = "INSERT INTO user ('username', 'hashpassword', 'mail', 'rating') VALUES(@username, @hashpassword, @mail, @rating)";
+
                 SQLiteCommand comm = new SQLiteCommand(query, con.myConnection);
                 comm.Parameters.AddWithValue("@username", username);
                 comm.Parameters.AddWithValue("@hashpassword", hashed);
                 comm.Parameters.AddWithValue("@mail", mail);
                 comm.Parameters.AddWithValue("@rating", 0);
                 var res = comm.ExecuteNonQuery();
-                con.CloseConnetion();
-                return true;
+                valid = true;
             }
-        }
-            public static bool LoginUser(User user)
+            catch (Exception ex) {
+               Console.WriteLine(ex.Message);
+            }
+            finally
             {
+                con.CloseConnetion();
+            }
+            return valid;
+
+        }
+        public static bool LoginUser(User user)
+        {
             bool valid = false;
             if (!ValidateCredentials(user, "Login"))
                 return valid;
             DatabaseCon con = new DatabaseCon();
-            string mail = Convert.ToString(user.mail);
+            try
+            {
+                string mail = Convert.ToString(user.mail);
                 string pass = Convert.ToString(user.hashpassword);
+                string hashed = ComputeSha256Hash(pass);
                 con.OpenConnection();
                 string query = "SELECT * FROM user WHERE mail=@mail";
                 SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
@@ -102,21 +103,29 @@ namespace React5.Services
                 SQLiteDataReader result = myCommand.ExecuteReader();
                 if (result.HasRows)
                 {
-                   
+
                     while (result.Read())
                     {
                         string pass_db = Convert.ToString(result["hashpassword"]);
-                        string hashed = ComputeSha256Hash(pass);
                         if (pass_db == hashed)
                         {
                             valid = true;
                         }
                     }
-                con.CloseConnetion(); 
-
                 }
-            return valid;
             }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.CloseConnetion();
+            }
+            return valid;
+        }
+    
         public static async Task<User>GetUser(string username)
         {
             DatabaseCon con = new DatabaseCon();
@@ -140,5 +149,6 @@ namespace React5.Services
             con.CloseConnetion();
             return user;
         }
+
     }
 }

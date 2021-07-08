@@ -34,6 +34,7 @@ namespace React5.Services
             DatabaseCon con = new DatabaseCon();
             con.OpenConnection();
             List<Test> quests = new List<Test>();
+
             string query = "SELECT * FROM quests WHERE domain=@domain AND level=@level";
             SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
             myCommand.Parameters.AddWithValue("@level", level);
@@ -103,7 +104,6 @@ namespace React5.Services
 
                 }
             }
-            con.CloseConnetion();
             if (ans == option)      //if user answer is equal to stored answer for that question
             {
                 bool answered = false;   // flag variable to check if user has already answered the question
@@ -164,8 +164,8 @@ namespace React5.Services
 
 
             }
-           
             return false;
         }
+
     }
 }

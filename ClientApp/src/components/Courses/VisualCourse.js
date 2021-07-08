@@ -60,10 +60,7 @@ export class VisualCourse extends Component {
     }
 
     async populateData() {
-        /*const response = await fetch('Course');*/
-        const response = await fetch('Course/getbydomain/Visual');
-        /*const response = await fetch('Course/getbydomain/Frontend');*/
-
+        const response = await fetch('Course/getByDomain/Visual');
         const data = await response.json();
         console.log(data)
         this.setState({ courses: data, loading: false });

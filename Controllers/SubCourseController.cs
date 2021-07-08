@@ -13,57 +13,14 @@ namespace React5.Controllers
         [HttpGet]    //Route to get all sub courses
         public IEnumerable<Subcourse> GetSubCourses()
         {
-            DatabaseCon con = new DatabaseCon();
-            con.OpenConnection();
-            List<Subcourse> subCourses = new List<Subcourse>();
-            string query = "SELECT * FROM subcourses";
-
-            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            SQLiteDataReader result = myCommand.ExecuteReader();
-            if (result.HasRows)
-            {
-                while (result.Read())
-                {
-                    Subcourse obj = new Subcourse();
-                    obj.subcourseid = result["subcourseid"].ToString();
-                    obj.subcoursename = result["subcoursename"].ToString();
-                    obj.courseid = result["courseid"].ToString();
-                    obj.subcourseurl = result["subcourseurl"].ToString();
-                    obj.description = result["description"].ToString();
-                    subCourses.Add(obj);
-                }
-            }
-            con.CloseConnetion();
-            return subCourses;
-
+            return SubCourseServices.GetSubCourses();
         }
         [HttpGet]
         [Route("{id}")]
         public IEnumerable<Subcourse> GetMainCourse(string id)
         {
-            DatabaseCon con = new DatabaseCon();
-            con.OpenConnection();
-            List<Subcourse> subCourses = new List<Subcourse>();
-            string query = "SELECT * FROM subcourses WHERE courseid=@id";
+            return SubCourseServices.GetMainCourse(id);
 
-            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
-            myCommand.Parameters.AddWithValue("@id", id);
-            SQLiteDataReader result = myCommand.ExecuteReader();
-            if (result.HasRows)
-            {
-                while (result.Read())
-                {
-                    Subcourse obj = new Subcourse();
-                    obj.subcourseid = result["subcourseid"].ToString();
-                    obj.subcoursename = result["subcoursename"].ToString();
-                    obj.courseid = result["courseid"].ToString();
-                    obj.subcourseurl = result["subcourseurl"].ToString();
-                    obj.description = result["description"].ToString();
-                    subCourses.Add(obj);
-                }
-            }
-            con.CloseConnetion();
-            return subCourses;
 
         }
         [HttpPost]

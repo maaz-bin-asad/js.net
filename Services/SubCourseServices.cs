@@ -1,4 +1,6 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
 using React5.Database;
 using React5.Models;
 
@@ -19,6 +21,56 @@ namespace React5.Services
 
             int res = InsertCommand.ExecuteNonQuery();
             con.CloseConnetion();
+        }
+
+        public static IEnumerable<Subcourse> GetSubCourses()
+        {
+            DatabaseCon con = new DatabaseCon();
+            con.OpenConnection();
+            List<Subcourse> subCourses = new List<Subcourse>();
+            string query = "SELECT subcoursename,subcourseurl,description FROM subcourses";
+
+            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+            SQLiteDataReader result = myCommand.ExecuteReader();
+            if (result.HasRows)
+            {
+                while (result.Read())
+                {
+                    Subcourse obj = new Subcourse();
+                    obj.subcoursename = result["subcoursename"].ToString();
+                    obj.subcourseurl = result["subcourseurl"].ToString();
+                    obj.description = result["description"].ToString();
+                    subCourses.Add(obj);
+                }
+            }
+            con.CloseConnetion();
+            return subCourses;
+
+        }
+        public static IEnumerable<Subcourse> GetMainCourse(string id)
+        {
+            DatabaseCon con = new DatabaseCon();
+            con.OpenConnection();
+            List<Subcourse> subCourses = new List<Subcourse>();
+            //joining two tabels for getting data from both tables
+            string query = "SELECT subcoursename,subcourseurl,description FROM subcourses courseid=@id";
+            SQLiteCommand myCommand = new SQLiteCommand(query, con.myConnection);
+            myCommand.Parameters.AddWithValue("@id", id);
+            SQLiteDataReader result = myCommand.ExecuteReader();
+            if (result.HasRows)
+            {
+                while (result.Read())
+                {
+                    Subcourse obj = new Subcourse();
+                    obj.subcoursename = result["subcoursename"].ToString();
+                    obj.subcourseurl = result["subcourseurl"].ToString();
+                    obj.description = result["description"].ToString();
+                    subCourses.Add(obj);
+/*                    Console.WriteLine(obj.subcoursename, obj.coursename);*/
+                }
+            }
+            con.CloseConnetion();
+            return subCourses;
         }
     }
 }

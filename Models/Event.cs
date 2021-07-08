@@ -13,6 +13,7 @@ namespace React5.Models
         public string videourl { get; set; }
         public string starttime { get; set; }
         public long duration { get; set; }
+        public long numberofattendees { get; set; }
 
     }
 }

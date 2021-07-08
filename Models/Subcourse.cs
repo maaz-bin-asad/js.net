@@ -12,5 +12,6 @@ namespace React5.Models
         public string subcourseurl { get; set; }
         public string description { get; set; } 
         public string courseid { get; set; } //Foreign key
+     
     }
 }

@@ -38,7 +38,6 @@ namespace React5.Controllers
            
         }
         [HttpGet]
-
         [Route("getTest/{domain}")]  //Route to get all questions by domain
         public RedirectResult AddQueryParameters(string domain, [FromQuery] string level)
         {
