@@ -21,7 +21,13 @@ namespace React5.Controllers
         public UserController()
         {
         }
-       
+       [HttpGet("checkAuth")]
+       [Authorize]
+       public bool CheckAuthentication()
+        {
+            return true;
+        }
+
         [HttpPost]    //Route to login the user
         public IActionResult LoginUser([FromForm] User user)
         {
