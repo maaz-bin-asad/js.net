@@ -13,7 +13,7 @@ import CoursesPage  from './components/Courses/CoursesPage';
 import EventPage from './components/Event/EventPage';
 import { QuizPage } from './components/Quiz/QuizPage';
 import Signup from './components/AuthPage/Signup';
-import { Login} from './components/AuthPage/Login';
+import  Login from './components/AuthPage/Login';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 
@@ -42,10 +42,10 @@ function App() {
                      
                         <Router path="/userpage">
                             <HeadLayout>
-                            <ProtectedRoute exact path='/userpage' component={UserPage} />
-                                <ProtectedRoute path='/userpage/course' component={CoursesPage} />
-                                <ProtectedRoute path='/userpage/event' component={EventPage} />
-                                <ProtectedRoute path='/userpage/quiz' component={QuizPage} />
+                            <Route exact path='/userpage' component={UserPage} />
+                                <Route path='/userpage/course' component={CoursesPage} />
+                                <Route path='/userpage/event' component={EventPage} />
+                                <Route path='/userpage/quiz' component={QuizPage} />
                             </HeadLayout>
 
                         </Router>

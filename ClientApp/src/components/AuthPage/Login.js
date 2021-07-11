@@ -1,8 +1,26 @@
-/*
-import React from 'react';
-import './Auth.css'
+
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import './Auth.css';
+import { login } from "../../feature/userSlice";
+
 
 const Login = () => {
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const dispatch = useDispatch();
+	const handelSubmit = (e) => {
+		e.preventDefault();
+		dispatch(
+			login({
+			name: name,
+			email: email,
+			loggedIn: true,
+		})
+		);
+	};
+
+
     return (
 			 <>
 			<div className="container1">
@@ -17,14 +35,20 @@ const Login = () => {
 							</div>
 						</div>
 						<div className="card-body">
-							<form action="User" method= "post">
+							<form action="User" method="post" onSubmit={(e) => handelSubmit(e)}>
 								<div className="input-group form-group">
 									<div className="input-group-prepend">
-										<span className="input-group-text"><i className="fas fa-envelope"></i></span>
+										<span className="input-group-text"><i className="fas fa-human"></i></span>
 									</div>
-									<input type="text" className="form-control" placeholder="Email" name="mail"/>
-						
+									<input type="name" className="form-control" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
 								</div>
+									<div className="input-group form-group">
+										<div className="input-group-prepend">
+											<span className="input-group-text"><i class="fas fa-key"></i></span>
+										</div>
+										<input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+									</div>
+								
 								<div className="input-group form-group">
 										<div className="input-group-prepend">
 											<span className="input-group-text"><i class="fas fa-key"></i></span>
@@ -57,9 +81,9 @@ const Login = () => {
 
 }
 export default Login;
-*/
 
 
+/*
 import React, { Component } from 'react';
 import './Auth.css'
 
@@ -72,10 +96,7 @@ export class Login extends Component {
 		super(props);
 		this.state = { Register: 0, Invalid:0,  loading: true };
     }
-    /*let history = useHistory();
-const handleRoute = () => {
-    history.push("/maincourse");
-}*/
+
     componentDidMount() {
         this.populateData();
     }
@@ -163,4 +184,4 @@ const handleRoute = () => {
 
 		this.setState({ Register: register, Invalid: invalid, loading: false });
     }
-}
+}*/
