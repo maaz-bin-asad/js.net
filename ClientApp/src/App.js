@@ -41,12 +41,12 @@ function App() {
 
                      
                         <Router path="/userpage">
-                            <HeadLayout>
-                            <ProtectedRoute exact path='/userpage' component={UserPage} />
-                                <ProtectedRoute path='/userpage/course' component={CoursesPage} />
-                                <ProtectedRoute path='/userpage/event' component={EventPage} />
-                                <ProtectedRoute path='/userpage/quiz' component={QuizPage} />
-                            </HeadLayout>
+                        <HeadLayout>
+                            <Route exact path='/userpage' component={UserPage} />
+                            <Route path='/userpage/course' component={CoursesPage} />
+                            <Route path='/userpage/event' component={EventPage} />
+                            <Route path='/userpage/quiz' component={QuizPage} />
+                        </HeadLayout>
 
                         </Router>
 

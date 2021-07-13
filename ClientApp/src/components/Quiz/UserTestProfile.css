@@ -1,15 +1,15 @@
 
 .main_wrap {
-    /*  background-color: blue;*/
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
     flex-direction: column;
     margin-top:5%;
+    z-index:auto;
 }
 .profile_wrap {
-    /*   background-color: yellow;*/
+   
     display: flex;
     justify-content: center;
     align-content: center;
@@ -21,7 +21,7 @@
     border-radius: 100% 100% 0% 100%;
 }
 .detail_wrap {
- /*   background-color: pink;*/
+ 
     margin: 1rem;
     border: .02rem solid #52d6f4;
     padding: 3rem;
@@ -35,6 +35,36 @@
     width: 50%;
 }
 .rating {
-   /* background-color: red;*/
+   
     width:50%;
+}
+
+
+.btn1 {
+    width: 25rem;
+    height: 5rem;
+    background-color: #52d6f4;
+    font-size:32px;
+    margin-left:40%;
+    padding-bottom:5%;
+}
+
+.divbox {
+    width:25rem;
+    border: 2px solid #52d6f4;
+    padding: 2% 2% 2% 2%;
+    margin-bottom:5%;
+    border-radius:10px;
+    
+}
+
+.heading_label input{
+    width:18rem;
+}
+
+.level {
+   
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
 }

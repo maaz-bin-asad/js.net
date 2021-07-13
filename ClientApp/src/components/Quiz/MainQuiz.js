@@ -23,7 +23,7 @@ const handleRoute = () => {
         return (<>
             {Questions.map(question => <div key={question} className='col d-flex justify-content-center'>
 
-                <div className="card text-center my-2">
+                <div className="divbox">
                     
                     <section className="card-title"><h3>{question.statement}</h3> </section>
                     <div className="heading_label">

@@ -21,25 +21,25 @@ const handleRoute = () => {
 
     static renderDiv(Domain) {
         return (<>
-            <div className="col d-flex justify-content-center  my-2">
+            <div className="container">
+            <div className=" level">
             <form action={"Test/getTest/" + Domain}>
                 <input type="hidden" value="easy" name="level" />
-                <input className="btn btn-success" type="submit" value="Easy" />
-                </form>
-            </div>
-            <div className="col d-flex justify-content-center my-2">
-            <form action={"Test/getTest/" + Domain}>
-                <input type="hidden"  value="medium" name="level" />
+                <input className="btn1" type="submit" value="Easy" />
+                    </form>
+                    <form action={"Test/getTest/" + Domain}>
+                        <input type="hidden" value="medium" name="level" />
 
-                <input type="submit" className="btn btn-warning" value="Medium" />
-                </form>
+                        <input type="submit" className="btn1" value="Medium" />
+                    </form>
+                    <form action={"Test/getTest/" + Domain}>
+                        <input type="hidden" value="hard" name="level" />
+
+                        <input type="submit" className="btn1" value="Hard" />
+                    </form>
             </div>
-            <div className="col d-flex justify-content-center my-2">
-            <form action={"Test/getTest/" + Domain}>
-                <input type="hidden"  value="hard" name="level" />
-                      
-                <input type="submit" className="btn btn-danger" value="Hard" />
-                </form>
+        
+           
                 </div>
             
         </>);

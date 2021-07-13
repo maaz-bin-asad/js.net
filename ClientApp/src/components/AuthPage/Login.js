@@ -83,9 +83,15 @@ const handleRoute = () => {
     static renderDiv(Register, Invalid) {
         return (<>
 			<div className="container1">
-				<div className="d-flex justify-content-center h-100">
+				<div className="invalid">
 					{Register == '1' ? < h1 > Welcome now login</h1> : ""}
 					{Invalid == '1' ? < h1 > Invalid Email or Password</h1> : ""}
+
+				</div>
+				
+				<div className="d-flex justify-content-center h-100">
+					
+					
 					<div className="card">
 						<div className="card-header">
 							<h3>Log In</h3>
