@@ -6,7 +6,7 @@ import {MainQuiz} from "./MainQuiz";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QuizSideBarLayout } from '../QuizSideBarLayout';
 import {Level }from "./Level";
-import {UserTestProfile} from "./UserTestProfile";
+import UserTestProfile from "./UserTestProfile";
 
 
 export class QuizPage extends Component {

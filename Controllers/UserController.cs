@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using System;
 
 namespace React5.Controllers
 {
@@ -29,8 +30,10 @@ namespace React5.Controllers
         }
 
         [HttpPost]    //Route to login the user
-        public IActionResult LoginUser([FromForm] User user)
+        public IActionResult LoginUser([FromBody] User user)
         {
+            Console.WriteLine(user.mail);
+            Console.WriteLine(user.hashpassword);
             //  if credentials are valid
             if (UserServices.LoginUser(user))
             {

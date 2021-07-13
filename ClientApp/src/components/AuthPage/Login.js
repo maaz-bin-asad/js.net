@@ -9,8 +9,20 @@ const Login = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const dispatch = useDispatch();
+
+	
 	const handelSubmit = (e) => {
 		e.preventDefault();
+		const pass = e.target.elements.hashpassword.value
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST","User", true);
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.send(JSON.stringify({
+			"mail": email,
+		
+			"hashpassword": pass,
+		}));
+		console.log(name)
 		dispatch(
 			login({
 			name: name,

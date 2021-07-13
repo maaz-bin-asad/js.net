@@ -15,10 +15,14 @@ import { QuizPage } from './components/Quiz/QuizPage';
 import Signup from './components/AuthPage/Signup';
 import  Login from './components/AuthPage/Login';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { useSelector } from 'react-redux';
+import { selectUser } from './feature/userSlice';
 
 
 
 function App() {
+
+    const user = useSelector(selectUser)
     return (
         <Router>
             <div className="app">
@@ -38,17 +42,23 @@ function App() {
                         </Layout>
 
                     </Router>
-
-                     
-                        <Router path="/userpage">
-                            <HeadLayout>
+                    {user ? (
+                       <HeadLayout>
+                        <Route exact path='/userpage' component={UserPage} />
+                        <Route path='/userpage/course' component={CoursesPage} />
+                        <Route path='/userpage/event' component={EventPage} />
+                        <Route path='/userpage/quiz' component={QuizPage} />
+                        </HeadLayout>) : (<Login />)}
+                   {/*<Router path="/userpage">
+                        <HeadLayout>
                             <Route exact path='/userpage' component={UserPage} />
-                                <Route path='/userpage/course' component={CoursesPage} />
-                                <Route path='/userpage/event' component={EventPage} />
-                                <Route path='/userpage/quiz' component={QuizPage} />
-                            </HeadLayout>
+                            <Route path='/userpage/course' component={CoursesPage} />
+                            <Route path='/userpage/event' component={EventPage} />
+                            <Route path='/userpage/quiz' component={QuizPage} />
+                        </HeadLayout>
 
-                        </Router>
+                    </Router>*/}
+                    
 
                   {/*  
                     <Router path="/userpage/course">
