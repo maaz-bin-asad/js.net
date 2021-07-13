@@ -33,8 +33,8 @@ function App() {
                     </Router>
                     <Router path="/auth">
                         <Layout>               
-                            <Route path='/auth/signup' component={Signup} />
-                            <Route path='/auth/login' component={Login} />
+                            <Route  path='/auth/signup' component={Signup} />
+                            <Route  path='/auth/login' component={Login} />
                         </Layout>
 
                     </Router>
@@ -42,7 +42,7 @@ function App() {
                      
                         <Router path="/userpage">
                             <HeadLayout>
-                            <Route exact path='/userpage' component={UserPage} />
+                            <ProtectedRoute exact path='/userpage' component={UserPage} />
                                 <Route path='/userpage/course' component={CoursesPage} />
                                 <Route path='/userpage/event' component={EventPage} />
                                 <Route path='/userpage/quiz' component={QuizPage} />

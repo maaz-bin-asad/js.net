@@ -84,7 +84,7 @@ const handleRoute = () => {
         return (<>
 			<div className="container1">
 				<div className="d-flex justify-content-center h-100">
-					{Register == '1' ? < h1 > Welcome now login</h1> : ""}
+					{Register == '1' ? < h1  > Welcome now login</h1> : ""}
 					{Invalid == '1' ? < h1 > Invalid Email or Password</h1> : ""}
 					<div className="card">
 						<div className="card-header">
@@ -97,6 +97,13 @@ const handleRoute = () => {
 						</div>
 						<div className="card-body">
 							<form action="User" method="post">
+								<div className="input-group form-group">
+									<div className="input-group-prepend">
+										<span className="input-group-text"><i className="fas fa-user"></i></span>
+									</div>
+									<input type="text" name="username" className="form-control" placeholder="Username" />
+
+								</div>
 								<div className="input-group form-group">
 									<div className="input-group-prepend">
 										<span className="input-group-text"><i className="fas fa-envelope"></i></span>
