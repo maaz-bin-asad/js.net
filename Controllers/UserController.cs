@@ -22,10 +22,11 @@ namespace React5.Controllers
         {
         }
        [HttpGet("checkAuth")]
-       [Authorize]
+       
        public bool CheckAuthentication()
         {
-            return true;
+            if (HttpContext.Request.Cookies.ContainsKey("AuthCookie")) return true;
+            return false;
         }
 
         [HttpPost]    //Route to login the user
