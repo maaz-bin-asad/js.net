@@ -1,17 +1,5 @@
 ﻿import React, { Component } from 'react';
-import Category from './Category';
 import "./Courses.css";
-import { Link } from 'react-router-dom';
-
-/*const Courses = () => {
-
-    return (
-        <>
-
-            <h1>Trending course</h1>
-        </>)
-}
-export default Courses;*/
 
 export class BackEndCourse extends Component {
     static displayName = BackEndCourse.name;
@@ -27,9 +15,8 @@ export class BackEndCourse extends Component {
 
     static renderDiv(courses) {
         return (<>
-            {courses.map(course => <div key={course} className='coursescards'>
+            {courses.map(course => <div key={course} className='coursescards'>          { /* render the obtained courses */ }
 
-                {/* <img src="#" alt='mypic' className='card_img'></img>*/}
                 <div className='coursescard'>
                     <h3 className='coursescard_title'>{course.coursename}</h3>
                     <span className='coursescard_description'>{course.coursedomain}</span>

@@ -1,55 +1,15 @@
 ﻿import React, { Component } from 'react';
-import Category from './Category';
 import "./Courses.css";
-import { Link } from 'react-router-dom';
-/*import React, { useState, useEffect } from 'react'
-import Axios from 'axios';
-
-const FrontEndCourse = () => {
-    
-    const [data, setData] = useState([]);
-
-    useEffect(async () => {
-
-        await Axios.get('Course/getbydomain/Frontend')
-            .then(result => setData(result.data));
-        console.log(data);
-
-    }, []);
-
-    return (
-        <>
-            
-            {data.map(course => <div key={course} className='coursescards'>
-                <div className='coursescard'>
-                    <h3 className='coursescard_title'>{course.coursename}</h3>
-                    <span className='coursescard_description'>{course.coursedomain}</span>
-                    <br />
-                    <br />
-                    <form action={"Course/getCourse/" + course.courseid}>
-                        <input type="submit" value="Start" />
-                    </form>
-                </div>
-            </div>
-            )
-            }
-          
-        </>)
-
-};
-
-
-export default FrontEndCourse;*/
 
 export class FrontEndCourse extends Component {
-    static displayName = FrontEndCourse.name;
+    static displayName = FrontEndCourse.name;     // static variable for displaying course name
 
     constructor(props) {
-        super(props);
+        super(props);                             // used to call members of parent class 
         this.state = { courses: [], loading: true };
     }
 
-    componentDidMount() {
+    componentDidMount() {                         // member function to run after component mount
         this.populateData();
     }
 
@@ -74,7 +34,7 @@ export class FrontEndCourse extends Component {
         </>);
     }
 
-    render() {
+    render() {                                       // member function to render the component
         let contents = this.state.loading
             ? <p><em>Loading..</em></p>
             : FrontEndCourse.renderDiv(this.state.courses);
@@ -87,10 +47,63 @@ export class FrontEndCourse extends Component {
         );
     }
 
-    async populateData() {
+    async populateData() {                             // get data using get request
         const response = await fetch('Course/getByDomain/Frontend');
         const data = await response.json();
-        console.log(data)
-        this.setState({ courses: data, loading: false });
+        this.setState({ courses: data, loading: false });    // setting the obtained variables state 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*same code in functional component */
+/*import React, { useState, useEffect } from 'react'
+import Axios from 'axios';
+
+const FrontEndCourse = () => {
+   
+    const [data, setData] = useState([]);
+
+    useEffect(async () => {
+
+        await Axios.get('Course/getbydomain/Frontend')
+            .then(result => setData(result.data));
+        console.log(data);
+
+    }, []);
+
+    return (
+        <>
+           
+            {data.map(course => <div key={course} className='coursescards'>
+                <div className='coursescard'>
+                    <h3 className='coursescard_title'>{course.coursename}</h3>
+                    <span className='coursescard_description'>{course.coursedomain}</span>
+                    <br />
+                    <br />
+                    <form action={"Course/getCourse/" + course.courseid}>
+                        <input type="submit" value="Start" />
+                    </form>
+                </div>
+            </div>
+            )
+            }
+         
+        </>)
+
+};
+
+
+export default FrontEndCourse;*/

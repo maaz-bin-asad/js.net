@@ -1,9 +1,4 @@
-
-import Category from './Category';
-import ReactPlayer from 'react-player'
 import "./Courses.css";
-
-
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios';
 
@@ -51,6 +46,16 @@ const Maincourse = () => {
         </>)
 }
 export default Maincourse;
+
+
+
+
+
+
+
+
+
+/* alternative approach for abive code */
 /*
 export class Maincourse extends Component {
     static displayName = Maincourse.name;
