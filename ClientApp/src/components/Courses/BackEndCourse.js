@@ -3,15 +3,7 @@ import Category from './Category';
 import "./Courses.css";
 import { Link } from 'react-router-dom';
 
-/*const Courses = () => {
 
-    return (
-        <>
-
-            <h1>Trending course</h1>
-        </>)
-}
-export default Courses;*/
 
 export class BackEndCourse extends Component {
     static displayName = BackEndCourse.name;
