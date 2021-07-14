@@ -64,11 +64,5 @@ export class Level extends Component {
         var pathArray = window.location.pathname.split('/');
         console.log(pathArray[3])
         this.setState({ Domain: pathArray[3], loading: false });
-        /*const response = await fetch('Subcourse');
-       
-
-        const data = await response.json();
-        console.log(data)
-        this.setState({ Subcourses: data, loading: false });*/
     }
 }
