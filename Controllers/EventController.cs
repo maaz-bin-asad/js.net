@@ -14,27 +14,25 @@ namespace React5.Controllers
     public class EventController : ControllerBase
     {
       [HttpGet]
-       /* public async Task<IEnumerable<Event>> Get()*/
          public IEnumerable<Event> Get()
         {
-            /* return await EventServices.GetAll();*/
             return EventServices.GetAll();
          }
 
-        [HttpPost]
+        [HttpPost]                      // Route to post new event
         public string create([FromBody] Event newEvent)
         {
            return EventServices.Add(newEvent);
            
         }
         [HttpGet]
-        [Route("getEvent/{id}")]
+        [Route("getEvent/{id}")]         // Route to get event by ID
         public Event GetEvent(string id)
         {
             return EventServices.GetEvent(id);
         }
         [HttpPost]
-        [Route("registerForEvent")]
+        [Route("registerForEvent")]      // Route to register for the event
         public string RegisterForEvent([FromBody] EventActivity newEntry)
         {
             return EventServices.RegisterForEvent(newEntry);

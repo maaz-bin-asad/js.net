@@ -23,20 +23,20 @@ namespace React5.Controllers
         }
 
         [HttpGet]
-        [Route("getByDomain/{Domain}")]
+        [Route("getByDomain/{Domain}")]       // Route to get test by domain
         public IEnumerable<Course> GetByDomain(string Domain)
         {
             return CourseServices.GetByDoamin(Domain);
         }
 
-        [HttpPost]
+        [HttpPost]                            // Route to post new course
         public IActionResult Create([FromBody] Course newCourse)
         {
             CourseServices.Add(newCourse);
             return CreatedAtAction(nameof(Create), newCourse);
 
         }
-        [HttpGet]
+        [HttpGet]                              // Route to get course by ID
         [Route("getCourse/{id}")]
         public IActionResult GetCourse(string id)
         {
@@ -48,9 +48,3 @@ namespace React5.Controllers
 
     }
 }
-
-/*
- Test credentials
- ezio@assasinscreeed.com
-jhewe
-*/

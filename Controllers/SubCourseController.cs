@@ -16,14 +16,14 @@ namespace React5.Controllers
             return SubCourseServices.GetSubCourses();
         }
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}")]    // Route to get course by ID
         public IEnumerable<Subcourse> GetMainCourse(string id)
         {
             return SubCourseServices.GetMainCourse(id);
 
 
         }
-        [HttpPost]
+        [HttpPost]          // Route to post new sub course
         public IActionResult Create([FromBody] Subcourse newSubcourse)
         {
             SubCourseServices.Add(newSubcourse);

@@ -30,7 +30,7 @@ namespace React5.Controllers
         }
         [HttpGet]
 
-        [Route("getQuestions")]  //Route to get all questions by domain
+        [Route("getQuestions")]  //Route to get all questions by domain and difficulty level
         public async Task<IEnumerable<Test>>GetAllquest([FromQuery] string domain,[FromQuery] string level)
         {
           
@@ -50,12 +50,6 @@ namespace React5.Controllers
         [Route("checkAnswer")]    //Route to check correct answer and update rating of the user
         public IActionResult CheckAnswer([FromQuery] string option, [FromQuery] string question_id, [FromQuery] string username, [FromQuery]  string domain, [FromQuery] string level)   //receiving query parameters from frontend
         {
-            Console.WriteLine("workinggggggg");
-            Console.WriteLine(option);
-            Console.WriteLine(question_id);
-            Console.WriteLine(username);
-            Console.WriteLine(domain);
-            Console.WriteLine(level);
             if (TestServices.CheckAnswer(option, question_id, username))
             {
                 return LocalRedirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level+"&correct=1");
@@ -67,7 +61,7 @@ namespace React5.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost]     // Route to add new question
         public IActionResult Create([FromBody] Test newQuiz)
         {
              TestServices.Add(newQuiz);

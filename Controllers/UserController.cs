@@ -21,7 +21,7 @@ namespace React5.Controllers
         public UserController()
         {
         }
-       [HttpGet("checkAuth")]
+       [HttpGet("checkAuth")]    //Routes to check authenticated user
        
        public bool CheckAuthentication()
         {
@@ -48,7 +48,7 @@ namespace React5.Controllers
             return LocalRedirect("/auth/login?invalid=1");
         }
 
-        [HttpGet("logout")]
+        [HttpGet("logout")]    //Route to logout the user
 
         public async Task<IActionResult> LogOut()
         {
@@ -69,7 +69,7 @@ namespace React5.Controllers
            
         }
         
-        [HttpGet("getUser")]
+        [HttpGet("getUser")]    // Route to get user details for their profile
         [Authorize]
         public async Task<User>GetUser([FromQuery] string username)
         {
