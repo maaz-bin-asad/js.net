@@ -41,4 +41,3 @@ export class ProtectedRoute extends React.Component {
 
     }
 }
-//<Redirect to={{ pathname: '/auth/login' }} />  (window.location.href = '/auth/login')
