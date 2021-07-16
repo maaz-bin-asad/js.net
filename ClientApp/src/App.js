@@ -42,7 +42,7 @@ function App() {
                      
                         <Router path="/userpage">
                             <HeadLayout>
-                            <ProtectedRoute exact path='/userpage' component={UserPage} />
+                                 <ProtectedRoute exact path='/userpage' component={UserPage} />
                                 <Route path='/userpage/course' component={CoursesPage} />
                                 <Route path='/userpage/event' component={EventPage} />
                                 <Route path='/userpage/quiz' component={QuizPage} />

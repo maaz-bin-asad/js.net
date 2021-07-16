@@ -1,11 +1,5 @@
-﻿import React, { Component } from 'react';
-import Category from './Category';
+﻿import React from 'react';
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom";
-
-/*
-import FrontEndCourse from './FrontEndCourse';
-import BackEndCourse  from './BackEndCourse';
-import VisualCourse from './VisualCourse';*/
 import  Maincourse  from './Maincourse';
 import Play from './Play';
 
@@ -21,6 +15,7 @@ const CoursesPage =()=> {
     
         return (
             <>
+              
                 
                         <SideBarLayout>
                            
