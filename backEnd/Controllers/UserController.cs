@@ -42,10 +42,10 @@ namespace React5.Controllers
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
 
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                return LocalRedirect("/userpage");
+                return Redirect("http://localhost:3000/userpage");
             }
             // if credentials are not valid 
-            return LocalRedirect("/auth/login?invalid=1");
+            return Redirect("http://localhost:3000/auth/login?invalid=1");
         }
 
         [HttpGet("logout")]
@@ -55,7 +55,7 @@ namespace React5.Controllers
             //SignOutAsync is Extension method for SignOut    
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             //Redirect to home page    
-            return LocalRedirect("/auth/login");
+            return Redirect("http://localhost:3000/auth/login");
         }
         [HttpPost("signup")]   //Route to register the user
 
@@ -63,9 +63,9 @@ namespace React5.Controllers
         {
             if (UserServices.RegisterUser(user))
             {
-               return LocalRedirect("/auth/login?registered=1");
+               return Redirect("http://localhost:3000/auth/login?registered=1");
             }
-           return LocalRedirect("/auth/signup?invalid=1");
+           return Redirect("http://localhost:3000/auth/signup?invalid=1");
            
         }
         

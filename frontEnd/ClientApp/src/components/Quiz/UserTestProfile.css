@@ -1,0 +1,40 @@
+
+.main_wrap {
+    /*  background-color: blue;*/
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top:5%;
+}
+.profile_wrap {
+    /*   background-color: yellow;*/
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: .02rem solid #52d6f4;
+}
+.avatar img {
+    border: 1rem solid white;
+    border-radius: 100% 100% 0% 100%;
+}
+.detail_wrap {
+ /*   background-color: pink;*/
+    margin: 1rem;
+    border: .02rem solid #52d6f4;
+    padding: 3rem;
+}
+.rating_wrap {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: .02rem solid #52d6f4;
+    width: 50%;
+}
+.rating {
+   /* background-color: red;*/
+    width:50%;
+}

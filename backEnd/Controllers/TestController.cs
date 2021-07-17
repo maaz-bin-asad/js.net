@@ -42,7 +42,7 @@ namespace React5.Controllers
         public IActionResult AddQueryParameters(string domain, [FromQuery] string level)
         {
 
-            return LocalRedirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level);
+            return Redirect("http://localhost:3000/userpage/quiz/mainquiz?domain="+domain+"&level="+level);
 
         }
         [HttpGet]
@@ -58,11 +58,11 @@ namespace React5.Controllers
             Console.WriteLine(level);
             if (TestServices.CheckAnswer(option, question_id, username))
             {
-                return LocalRedirect("/userpage/quiz/mainquiz?domain="+domain+"&level="+level+"&correct=1");
+                return Redirect("http://localhost:3000/userpage/quiz/mainquiz?domain="+domain+"&level="+level+"&correct=1");
             }
             else
             {
-                return LocalRedirect("/userpage/quiz/mainquiz?domain=" + domain + "&level=" + level + "&correct=0");
+                return Redirect("http://localhost:3000/userpage/quiz/mainquiz?domain=" + domain + "&level=" + level + "&correct=0");
             }
         }
 
