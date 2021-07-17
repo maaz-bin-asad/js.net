@@ -43,7 +43,8 @@ function App() {
                    
                         <Router path="/userpage">
                             <HeadLayout>
-                                 <Route exact path='/userpage' component={UserPage} />
+                                 <Route exact path='/userpage' component={UserPage} >
+                                 </Route>
                                 <Route  path='/userpage/course' component={CoursesPage} />
                                 <Route path='/userpage/event' component={EventPage} />
                                 <Route path='/userpage/quiz' component={QuizPage} />

@@ -40,7 +40,7 @@ namespace React5.Controllers
         [Route("getCourse/{id}")]
         public IActionResult GetCourse(string id)
         {
-            return Redirect("http://localhost:3000//userpage/course/maincourse?id=" + id);
+            return Redirect("http://localhost:3000/userpage/course/maincourse?id=" + id);
         }
 
 

@@ -20,7 +20,7 @@ export class ProtectedRoute extends React.Component {
     render() {
         
         let contents = this.state.loading
-            ? <p><em>Loading..</em></p>
+            ? <p><em>Go login first</em></p>
             : this.renderTable(this.state.Value );
 
         return (
@@ -34,7 +34,7 @@ export class ProtectedRoute extends React.Component {
     }
 
     async dataAuth() {
-        const isAuthenticated = await fetch("User/checkAuth");
+        const isAuthenticated = await fetch("https://localhost:5001/User/checkAuth");
         const data = await isAuthenticated.json();
         console.log(data)
         this.setState({ Value: data, loading: false});

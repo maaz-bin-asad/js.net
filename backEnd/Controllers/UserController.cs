@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-
+using System;
 namespace React5.Controllers
 {
 
@@ -25,8 +25,10 @@ namespace React5.Controllers
        
        public bool CheckAuthentication()
         {
+            Console.WriteLine(HttpContext.Request.Cookies.ContainsKey("AuthCookie"));
             if (HttpContext.Request.Cookies.ContainsKey("AuthCookie")) return true;
             return false;
+
         }
 
         [HttpPost]    //Route to login the user
@@ -70,7 +72,7 @@ namespace React5.Controllers
         }
         
         [HttpGet("getUser")]
-        [Authorize]
+
         public async Task<User>GetUser([FromQuery] string username)
         {
 

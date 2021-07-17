@@ -93,11 +93,11 @@ const handleRoute = () => {
 
     async populateData() {
 
-        const response = await fetch("https://localhost:5001/User/getUser?username=maazbinasad");
+        const response = await fetch("https://localhost:5001/User/getUser?username=a");
 
 
         const data = await response.json();
-        console.log(data)
+        console.log("user profile", data)
         this.setState({ User: data, loading: false });
     }
 }

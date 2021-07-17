@@ -1,6 +1,5 @@
-﻿import React ,{ Component }from "react";
-
-
+﻿﻿import React ,{ Component }from "react";
+import "./level.css";
 
 export class Level extends Component {
     static displayName = Level.name;
@@ -11,36 +10,33 @@ export class Level extends Component {
         super(props);
         this.state = {Domain:"", loading: true };
     }
-   /* let history = useHistory();
-const handleRoute = () => {
-    history.push("/maincourse");
-}*/
     componentDidMount() {
         this.populateData();
     }
 
     static renderDiv(Domain) {
         return (<>
-            <div className="col d-flex justify-content-center  my-2">
-            <form action={"https://localhost:5001/Test/getTest/" + Domain}>
-                <input type="hidden" value="easy" name="level" />
-                <input className="btn btn-success" type="submit" value="Easy" />
-                </form>
-            </div>
-            <div className="col d-flex justify-content-center my-2">
-            <form action={"https://localhost:5001/Test/getTest/" + Domain}>
-                <input type="hidden"  value="medium" name="level" />
+            <div className="container">
+                <div className=" level">
+                    <form action={"https://localhost:5001/Test/getTest/" + Domain}>
+                        <input type="hidden" value="easy" name="level" />
+                        <input className="btnn" type="submit" value="Easy" />
+                    </form>
+                    <form action={"https://localhost:5001/Test/getTest/" + Domain}>
+                        <input type="hidden" value="medium" name="level" />
 
-                <input type="submit" className="btn btn-warning" value="Medium" />
-                </form>
-            </div>
-            <div className="col d-flex justify-content-center my-2">
-            <form action={"https://localhost:5001/Test/getTest/" + Domain}>
-                <input type="hidden"  value="hard" name="level" />
-                      
-                <input type="submit" className="btn btn-danger" value="Hard" />
-                </form>
+                        <input type="submit" className="btnn" value="Medium" />
+                    </form>
+                    <form action={"https://localhost:5001/Test/getTest/" + Domain}>
+                        <input type="hidden" value="hard" name="level" />
+
+                        <input type="submit" className="btnn" value="Hard" />
+                    </form>
                 </div>
+
+
+            </div>
+
             
         </>);
     }
@@ -68,11 +64,5 @@ const handleRoute = () => {
         var pathArray = window.location.pathname.split('/');
         console.log(pathArray[3])
         this.setState({ Domain: pathArray[3], loading: false });
-        /*const response = await fetch('Subcourse');
-       
-
-        const data = await response.json();
-        console.log(data)
-        this.setState({ Subcourses: data, loading: false });*/
     }
 }

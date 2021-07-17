@@ -42,7 +42,7 @@ export class Header extends Component {
                                     <NavLink tag={Link} className="btn btn-info mx-2" to="/userpage/quiz">Tests</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <form action="User/logout">
+                                    <form action="https://localhost:5001/User/logout">
                                         
                                             <input type="submit" className="btn btn-info mx-2"  value="Log out" />
                                     </form>
