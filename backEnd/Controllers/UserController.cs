@@ -32,7 +32,7 @@ namespace React5.Controllers
         }
 
         [HttpPost]    //Route to login the user
-        public IActionResult LoginUser([FromForm] User user)
+        public IActionResult LoginUser([FromBody] User user)
         {
             //  if credentials are valid
             if (UserServices.LoginUser(user))
@@ -44,14 +44,13 @@ namespace React5.Controllers
                 var claimsIdentity = new ClaimsIdentity(claims, "Login");
 
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                return Redirect("http://localhost:3000/userpage");
+                return StatusCode(202);
             }
             // if credentials are not valid 
-            return Redirect("http://localhost:3000/auth/login?invalid=1");
+            return StatusCode(401);
         }
 
         [HttpGet("logout")]
-
         public async Task<IActionResult> LogOut()
         {
             //SignOutAsync is Extension method for SignOut    
@@ -65,9 +64,9 @@ namespace React5.Controllers
         {
             if (UserServices.RegisterUser(user))
             {
-               return Redirect("http://localhost:3000/auth/login?registered=1");
+               return StatusCode(201);
             }
-           return Redirect("http://localhost:3000/auth/signup?invalid=1");
+           return StatusCode(406);
            
         }
         

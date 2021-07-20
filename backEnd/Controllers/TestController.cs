@@ -50,7 +50,6 @@ namespace React5.Controllers
         [Route("checkAnswer")]    //Route to check correct answer and update rating of the user
         public IActionResult CheckAnswer([FromQuery] string option, [FromQuery] string question_id, [FromQuery] string username, [FromQuery]  string domain, [FromQuery] string level)   //receiving query parameters from frontend
         {
-            Console.WriteLine("workinggggggg");
             Console.WriteLine(option);
             Console.WriteLine(question_id);
             Console.WriteLine(username);
@@ -64,14 +63,6 @@ namespace React5.Controllers
             {
                 return Redirect("http://localhost:3000/userpage/quiz/mainquiz?domain=" + domain + "&level=" + level + "&correct=0");
             }
-        }
-
-
-        [HttpPost]
-        public IActionResult Create([FromBody] Test newQuiz)
-        {
-             TestServices.Add(newQuiz);
-            return CreatedAtAction(nameof(Create), newQuiz);
         }
 
 
